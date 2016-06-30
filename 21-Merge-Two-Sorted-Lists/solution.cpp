@@ -8,25 +8,21 @@
  */
 class Solution {
 public:
-    /*
-    题意：合并两个有序链表
-    模拟一轮归并排序
-    */
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode *dummy = new ListNode(0);
-        ListNode *tmp = dummy;
-        while (l1 != NULL && l2 != NULL) {
-            if (l1->val < l2->val) {
-                tmp->next = l1;
-                l1 = l1->next;
-            } else {
-                tmp->next = l2;
-                l2 = l2->next;
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        ListNode* pre = new ListNode(0);
+        ListNode* temp = pre;
+        while(l1 && l2)
+        {
+            if(l1 -> val < l2 -> val){
+                temp -> next = l1;
+                l1 = l1 -> next;
+            } else{
+                temp -> next = l2;
+                l2 = l2 -> next;
             }
-            tmp = tmp->next;
+            temp = temp -> next;   //??????
         }
-        if (l1 != NULL) tmp->next = l1;
-        else tmp->next = l2;
-        return dummy->next;
+        temp -> next = l1? l1 : l2;
+        return pre -> next;
     }
 };
