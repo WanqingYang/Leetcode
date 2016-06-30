@@ -19,17 +19,17 @@ public:
         ListNode* pre = new ListNode(0);
         pre -> next = head;
         ListNode* temp = pre;
-        while(n-- > 0)
+         for (int i = 0; i < n; i++)
         {
             head = head -> next;
         }
-        while(head -> next != NULL)
+        while(head != NULL)
         {
             head = head -> next;
             temp = temp -> next;
         }
         delete temp -> next;
         temp -> next = temp -> next -> next;
-        return pre;
+        return pre -> next;
     }
 };
