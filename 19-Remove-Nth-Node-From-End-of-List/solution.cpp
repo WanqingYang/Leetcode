@@ -9,27 +9,19 @@
  
 class Solution {
 public:
-    /*
-    题意：删除链表中倒数第n个结点，尽量只扫描一遍。
-    使用两个指针扫描，当第一个指针扫描到第N个结点后，
-    第二个指针从表头与第一个指针同时向后移动，
-    当第一个指针指向空节点时，另一个指针就指向倒数第n个结点了
-    */
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* pre = new ListNode(0);
-        pre -> next = head;
-        ListNode* temp = pre;
-        for(int i = 0; i < n; ++i)
-        {
-            head = head -> next;
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+        ListNode* front = new ListNode(0);
+        front->next = head;
+        ListNode* prev = front;
+        ListNode* post = front;
+        while (prev != nullptr){
+            prev = prev->next;
+            if (n<0)    post = post->next;
+            n--;
         }
-        while(head != NULL)
-        {
-            head = head -> next;
-            temp = temp -> next;
-        }
-        delete temp -> next;
-        temp -> next = temp -> next -> next;
-        return pre -> next;
+        ListNode* temp = post->next;
+        post->next = temp->next;
+        delete temp;
+        return front->next;
     }
 };
