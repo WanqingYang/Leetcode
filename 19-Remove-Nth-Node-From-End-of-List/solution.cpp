@@ -9,19 +9,21 @@
  
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode realHead(0);
-        realHead.next = head;
-        head = &realHead;
-        ListNode *curr = &realHead;
-        while (n-- > 0)
-            curr = curr->next;
-        while (curr->next != nullptr) {
-            curr = curr->next;
-            head = head->next;
-        }
+int countAndRemove(struct ListNode *node, int n){
 
-        head->next = head->next->next;
-        return realHead.next;
-    }
+    //Once the stack frame reaches the tail, counting starts.
+    if(!node->next) return n-1;
+
+    int NumOfNodesLeft = countAndRemove(node->next, n);
+
+    //If there are exactly n nodes in the rest of the list, delete next node.
+    if(NumOfNodesLeft  == 0)  node->next = (node->next)->next;
+
+    //Count decremented.         
+    return NumOfNodesLeft - 1;
+}
+
+ struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+    return (countAndRemove(head, n) == 0)? head->next : head;
+  }
 };
