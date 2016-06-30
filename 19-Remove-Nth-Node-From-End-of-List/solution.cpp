@@ -9,21 +9,27 @@
  
 class Solution {
 public:
-int countAndRemove(struct ListNode *node, int n){
-
-    //Once the stack frame reaches the tail, counting starts.
-    if(!node->next) return n-1;
-
-    int NumOfNodesLeft = countAndRemove(node->next, n);
-
-    //If there are exactly n nodes in the rest of the list, delete next node.
-    if(NumOfNodesLeft  == 0)  node->next = (node->next)->next;
-
-    //Count decremented.         
-    return NumOfNodesLeft - 1;
-}
-
- struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
-    return (countAndRemove(head, n) == 0)? head->next : head;
-  }
+    /*
+    题意：删除链表中倒数第n个结点，尽量只扫描一遍。
+    使用两个指针扫描，当第一个指针扫描到第N个结点后，
+    第二个指针从表头与第一个指针同时向后移动，
+    当第一个指针指向空节点时，另一个指针就指向倒数第n个结点了
+    */
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode pre = new ListNode(0);
+        pre -> next = head;
+        ListNode temp = pre;
+        while(n-- > 0)
+        {
+            head = head -> next;
+        }
+        while(head != NULL)
+        {
+            head = head -> next;
+            temp = temp -> next;
+        }
+        delete temp -> next;
+        temp -> next = temp -> next -> next;
+        return pre;
+    }
 };
