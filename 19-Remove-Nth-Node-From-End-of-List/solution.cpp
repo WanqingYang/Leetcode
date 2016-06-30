@@ -16,14 +16,14 @@ public:
     当第一个指针指向空节点时，另一个指针就指向倒数第n个结点了
     */
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode pre = new ListNode(0);
+        ListNode* pre = new ListNode(0);
         pre -> next = head;
-        ListNode temp = pre;
+        ListNode* temp = pre;
         while(n-- > 0)
         {
             head = head -> next;
         }
-        while(head != NULL)
+        while(head -> next != NULL)
         {
             head = head -> next;
             temp = temp -> next;
