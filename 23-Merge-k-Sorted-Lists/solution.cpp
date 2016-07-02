@@ -18,7 +18,7 @@ public:
         if(lists.empty()){return NULL;}
         int len = lists.size();
         while(len > 1){
-            for(i = 0; i < len / 2; i++){
+            for(int i = 0; i < len / 2; i++){
                 lists[i] = mergeTwoLists(lists[i], lists[len - i - 1])
             }
             len = (len + 1)/2;
