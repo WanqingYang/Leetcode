@@ -13,6 +13,17 @@ public:
      * @param lists: a list of ListNode
      * @return: The head of one sorted list.
      */
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2){
+        if(l1 == NULL){return l2;}
+        else if(l2 == NULL){return l1;}
+        if(l1->val <= l2->val){
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        } else{
+            l2->next = mergeTwoLists(l2->next, l2);
+            return l2;
+        }
+    }
 
     ListNode *mergeKLists(vector<ListNode *> &lists) {
         if(lists.empty()){return NULL;}
@@ -25,16 +36,5 @@ public:
         }
         return lists.front();
     }
-    
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2){
-        if(l1 == NULL){return l2;}
-        else if(l2 == NULL){return l1;}
-        if(l1->val <= l2->val){
-            l1->next = mergeTwoLists(l1->next, l2);
-            return l1;
-        } else{
-            l2->next = mergeTwoLists(l2->next, l2);
-            return l2;
-        }
-    }
 };
+    
