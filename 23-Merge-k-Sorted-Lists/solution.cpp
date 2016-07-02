@@ -15,7 +15,7 @@ public:
      */
 
     ListNode *mergeKLists(vector<ListNode *> &lists) {
-        if(lists.empty()){return NULL}
+        if(lists.empty()){return NULL;}
         int len = lists.size();
         while(len > 1){
             for(i = 0; i < len / 2; i++){
