@@ -6,7 +6,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class solution{
+class Solution{
 public:
   ListNode *reverseBetween(ListNode *head, int m, int n) {
     //handle case for empty list
