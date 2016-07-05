@@ -12,8 +12,8 @@ public:
         if(head == NULL) {return NULL;}
         if(head->next == NULL) {return head;}
         
-        ListNode* pre = new ListNode(0);
-        pre = head->next;
+        //ListNode* pre = new ListNode(0);
+        ListNode* pre = head->next;
         head->next = swapPairs(pre->next);
         pre->next = head;
         
