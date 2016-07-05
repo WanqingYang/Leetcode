@@ -6,6 +6,11 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+#include "lintcode.h"
+
+using namespace std;
+
+
 class Solution {
 public:
     void reverse(ListNode *head) {
@@ -29,8 +34,7 @@ public:
     }
 
     ListNode *reverseBetween(ListNode *head, int m, int n) {
-        //ListNode *dummy = new ListNode(-1, head);
-        ListNode *dummy = new ListNode(0);
+        ListNode *dummy = new ListNode(-1, head);
         ListNode *mth_prev = findkth(dummy, m - 1);
         ListNode *mth = mth_prev->next;
         ListNode *nth = findkth(dummy, n);
