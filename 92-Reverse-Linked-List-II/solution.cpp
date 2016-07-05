@@ -8,29 +8,37 @@
  */
 class Solution {
 public:
-    ListNode* reverseBetween(ListNode* head, int m, int n) {
-        if(head->next == NULL){return head;}
-        ListNode* first = new ListNode(0);
-        first->next = head;
-        ListNode* second = first;
-        ListNode* pre = first;
-        int i, j = 0;
-        //while(head->next != NULL){
-            while(i < m - 1){
-                first = first->next;
-                i++;
+    void reverse(ListNode *head) {
+        ListNode *prev = NULL;
+        while (head != NULL) {
+            ListNode *temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
+        }
+    }
+
+    ListNode *findkth(ListNode *head, int k) {
+        for (int i = 0; i < k; i++) {
+            if (head == NULL) {
+                return NULL;
             }
-            while(j < n - 1){
-                second = second->next;
-                j++;
-            }
-             ListNode* temp = first->next;
-             ListNode* temp2 = second->next;
-             first->next = second->next;
-             first->next->next = temp->next;
-             second->next = temp;
-             second->next->next = temp2->next;
-       // }
-        return pre;
+            head = head->next;
+        }
+        return head;
+    }
+
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        ListNode *dummy = new ListNode(-1, head);
+        ListNode *mth_prev = findkth(dummy, m - 1);
+        ListNode *mth = mth_prev->next;
+        ListNode *nth = findkth(dummy, n);
+        ListNode *nth_next = nth->next;
+        nth->next = NULL;
+
+        reverse(mth);
+        mth_prev->next = nth;
+        mth->next = nth_next;
+        return dummy->next;
     }
 };
