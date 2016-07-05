@@ -9,11 +9,10 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if(head == NULL || head->next == NULL)
-            return head;
+        if(head == NULL || head->next == NULL) {return head;}
         
         ListNode* pre = head->next;
-        head->next = swapPairs(pre->next);
+        head->next = swapPairs(head->next->next);
         pre->next = head;
         
         return pre;
