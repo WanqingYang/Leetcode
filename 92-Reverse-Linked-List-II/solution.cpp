@@ -6,10 +6,6 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-#include "lintcode.h"
-
-using namespace std;
-
 
 class Solution {
 public:
