@@ -9,13 +9,13 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
-        if(head-next == NULL){return head;}
+        if(head->next == NULL){return head;}
         ListNode* first = new ListNode(0);
         first->next = head;
         ListNode* second = first;
         ListNode* pre = first;
         int i, j = 0;
-        while(head->next != NULL){
+        //while(head->next != NULL){
             while(i < m - 1){
                 first = first->next;
                 i++;
@@ -30,7 +30,7 @@ public:
              first->next->next = temp->next;
              second->next = temp;
              second->next->next = temp2->next;
-        }
+       // }
         return pre;
     }
 };
