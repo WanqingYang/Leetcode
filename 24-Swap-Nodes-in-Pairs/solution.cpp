@@ -12,7 +12,7 @@ public:
         if(head == NULL || head->next == NULL) {return head;}
         
         ListNode* pre = head->next;
-        head->next = swapPairs(head->next->next);
+        head->next = swapPairs(pre->next->next);
         pre->next = head;
         
         return pre;
