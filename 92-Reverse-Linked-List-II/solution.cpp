@@ -7,39 +7,21 @@
  * };
  */
 
-class Solution {
+class Solution {  
 public:
-    void reverse(ListNode *head) {
-        ListNode *prev = NULL;
-        while (head != NULL) {
-            ListNode *temp = head->next;
-            head->next = prev;
-            prev = head;
-            head = temp;
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        ListNode* new_head = new ListNode(0);
+        new_head -> next = head;
+        ListNode* pre = new_head;
+        for (int i = 0; i < m - 1; i++)
+            pre = pre -> next;
+        ListNode* cur = pre -> next;
+        for (int i = 0; i < n - m; i++) {
+            ListNode* move = cur -> next; 
+            cur -> next = move -> next;
+            move -> next = pre -> next;
+            pre -> next = move;
         }
-    }
-
-    ListNode *findkth(ListNode *head, int k) {
-        for (int i = 0; i < k; i++) {
-            if (head == NULL) {
-                return NULL;
-            }
-            head = head->next;
-        }
-        return head;
-    }
-
-    ListNode *reverseBetween(ListNode *head, int m, int n) {
-        ListNode *dummy = new ListNode(-1, head);
-        ListNode *mth_prev = findkth(dummy, m - 1);
-        ListNode *mth = mth_prev->next;
-        ListNode *nth = findkth(dummy, n);
-        ListNode *nth_next = nth->next;
-        nth->next = NULL;
-
-        reverse(mth);
-        mth_prev->next = nth;
-        mth->next = nth_next;
-        return dummy->next;
+        return new_head -> next;
     }
 };
