@@ -29,7 +29,8 @@ public:
     }
 
     ListNode *reverseBetween(ListNode *head, int m, int n) {
-        ListNode *dummy = new ListNode(-1, head);
+        //ListNode *dummy = new ListNode(-1, head);
+        ListNode *dummy = new ListNode(0);
         ListNode *mth_prev = findkth(dummy, m - 1);
         ListNode *mth = mth_prev->next;
         ListNode *nth = findkth(dummy, n);
