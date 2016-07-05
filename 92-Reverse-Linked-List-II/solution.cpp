@@ -7,7 +7,7 @@
  * };
  */
 class solution{
-public
+public:
   ListNode *reverseBetween(ListNode *head, int m, int n) {
     //handle case for empty list
     if(head == NULL){
