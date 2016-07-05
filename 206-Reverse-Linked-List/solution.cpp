@@ -6,18 +6,18 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+/*class Solution {
 public:   
     ListNode* reverseList(ListNode* head) {
         if (!head || !(head -> next)) return head;
-        ListNode* node = reverseList(head -> next);
+        ListNode* pre = reverseList(head -> next);
         head -> next -> next = head;
         head -> next = NULL;
-        return node; 
+        return pre; 
     }
-};
+};*/
 
-/*class Solution{
+class Solution{
 public:
     ListNode* reverseList(ListNode* head) {
         ListNode* pre = NULL;
@@ -30,4 +30,4 @@ public:
         }
         return pre;
     }
-};*/
+};
