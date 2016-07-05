@@ -6,8 +6,9 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class ListNode *reverseBetween(ListNode *head, int m, int n) {
-    
+class solution{
+public
+  ListNode *reverseBetween(ListNode *head, int m, int n) {
     //handle case for empty list
     if(head == NULL){
         return NULL;
@@ -60,4 +61,5 @@ class ListNode *reverseBetween(ListNode *head, int m, int n) {
         mTh->next = nNext; 
     }
     return head;
+  }
 };
