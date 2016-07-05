@@ -6,21 +6,24 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {  
+class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
-        ListNode* new_head = new ListNode(0);
-        new_head -> next = head;
-        ListNode* pre = new_head;
-        for (int i = 0; i < m - 1; i++)
-            pre = pre -> next;
-        ListNode* cur = pre -> next;
-        for (int i = 0; i < n - m; i++) {
-            ListNode* move = cur -> next; 
-            cur -> next = move -> next;
-            move -> next = pre -> next;
-            pre -> next = move;
+        if(head->next == NULL || m == n){return head;}
+        ListNode* first = new ListNode(0);
+        first->next = head;
+        ListNode* second = first;
+        ListNode* pre = first;
+        for(int i = 0; i < m-1; ++i){
+            first = first->next;
         }
-        return new_head -> next;
+        ListNode* cur = first->next;
+        for(int j = 0; j < n-m; ++j){
+            ListNode* second = cur->next;
+        }
+        cur->next = second->next;
+        second->next = first->next;
+        first->next = second;
+        return pre->next;
     }
 };
