@@ -9,15 +9,13 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if(head == NULL)
-            return NULL;
-        if(head->next == NULL)
+        if(head == NULL || head->next == NULL)
             return head;
         
-        ListNode* next = head->next;
-        head->next = swapPairs(next->next);
-        next->next = head;
+        ListNode* pre = head->next;
+        head->next = swapPairs(pre->next);
+        pre->next = head;
         
-        return next;
+        return pre;
     }
 };
