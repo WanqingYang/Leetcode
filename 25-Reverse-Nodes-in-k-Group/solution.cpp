@@ -9,11 +9,11 @@
 class Solution {
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
-        if(head==NULL || head->next == NULL || k==1 || k==0) {return head;}
+        if(head == NULL || head->next == NULL || k==1 || k==0) {return head;}
         int num=0;
-        ListNode *preheader = new ListNode(-1);
-        preheader->next = head;
-        ListNode *cur = preheader, *nex, *pre = preheader;
+        ListNode *new_head = new ListNode(-1);
+        new_head->next = head;
+        ListNode *cur, *nex, *pre = new_head;
         while(cur = cur->next) 
             num++;
         while(num>=k) {
