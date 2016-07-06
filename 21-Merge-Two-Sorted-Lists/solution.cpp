@@ -8,8 +8,9 @@
  */
 class Solution {
 public:
-    void merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
-        if(l1 == NULL && l2 == NULL){return;}
+    //void merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
+    ListNode* merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
+        if(l1 == NULL || l2 == NULL){return tail->next;}
         if(l1->val <= l2->val){
             tail->next = l1;
             l1 = l1->next;
@@ -24,15 +25,16 @@ public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         ListNode dummy_head(0);
         ListNode *tail = &dummy_head;
+        ListNode *pre = tail;
         merge_helper(l1, l2, tail);
-        tail->next = l1? l1 : l2;  //
+        tail -> next = l1? l1 : l2;  //
         return dummy_head.next;
         
      /*   //ListNode* pre = new ListNode(0);
         ListNode dummy(0);
         ListNode* pre = &dummy;
         ListNode* tail = pre;
-        while(l1 == NULL && l2 == NULL)
+        while(l1 != NULL && l2 != NULL)
         {
             if(l1 -> val < l2 -> val){
                 tail -> next = l1;
