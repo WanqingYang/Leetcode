@@ -8,8 +8,26 @@
  */
 class Solution {
 public:
+    void merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
+        if(l1 == NULL && l2 == NULL){return;}
+        if(l1->val <= l2->val){
+            tail->next = l1;
+            l1 = l1->next;
+        } else{
+            tail->next = l2;
+            l2 = l2->next;
+        }
+        tail = tail->next;
+        merge_helper(l1, l2, tail);
+    }
+    
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        //ListNode* pre = new ListNode(0);
+        ListNode dummy_head(0);
+        ListNode *tail = &dummy_head;
+        merge_helper(l1, l2, tail);
+        return dummy_head.next;
+        
+     /*   //ListNode* pre = new ListNode(0);
         ListNode dummy(0);
         ListNode* pre = &dummy;
         ListNode* tail = pre;
@@ -27,6 +45,6 @@ public:
         tail -> next = l1? l1 : l2;
         //ListNode* pre1 = pre->next;
         //delete pre; 
-        return pre->next;
+        return pre->next;  */
     }
 };
