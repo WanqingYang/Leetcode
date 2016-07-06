@@ -13,7 +13,7 @@ public:
         int num=0;
         ListNode *preheader = new ListNode(-1);
         preheader->next = head;
-        ListNode *cur, *nex, *pre = preheader;
+        ListNode *cur = preheader, *nex, *pre = preheader;
         while(cur = cur->next) 
             num++;
         while(num>=k) {
