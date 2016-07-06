@@ -10,6 +10,8 @@ class Solution {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         ListNode* pre = new ListNode(0);
+       // ListNode dummy(0);
+        //ListNode* pre = &dummy;
         ListNode* tail = pre;
         while(l1 && l2)
         {
@@ -23,6 +25,8 @@ public:
             tail = tail -> next;   //??????
         }
         tail -> next = l1? l1 : l2;
-        return pre -> next;
+        ListNode* pre1 = pre->next;
+        delete pre; 
+        return pre1;
     }
 };
