@@ -25,13 +25,14 @@ public:
         ListNode dummy_head(0);
         ListNode *tail = &dummy_head;
         merge_helper(l1, l2, tail);
+        tail->next = l1? l1 : l2;  //
         return dummy_head.next;
         
      /*   //ListNode* pre = new ListNode(0);
         ListNode dummy(0);
         ListNode* pre = &dummy;
         ListNode* tail = pre;
-        while(l1 && l2)
+        while(l1 == NULL && l2 == NULL)
         {
             if(l1 -> val < l2 -> val){
                 tail -> next = l1;
