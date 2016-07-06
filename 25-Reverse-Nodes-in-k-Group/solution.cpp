@@ -11,7 +11,7 @@ public:
     ListNode *reverseKGroup(ListNode *head, int k) {
         if(head==NULL||k==1) return head;
         int num=0;
-        ListNode *preheader = new ListNode(0);
+        ListNode *preheader = new ListNode(-1);
         preheader->next = head;
         ListNode *cur = preheader, *nex, *pre = preheader;
         while(cur = cur->next) 
