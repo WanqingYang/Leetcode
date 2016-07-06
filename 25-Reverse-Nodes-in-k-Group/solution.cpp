@@ -8,40 +8,26 @@
  */
 class Solution {
 public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode *dummy = new ListNode(0);
-        dummy->next = head;
-        head = dummy;
-        while (head->next != NULL) {
-            head = reverseKNodes(head, k);
-        }
-        return dummy->next;
-    }
-    // reverse the next k nodes AFTER head: head->n1->n2..->nk->.. => head->nk->nk-1...->n1->..
-    // return n1 (the next head)
-    ListNode *reverseKNodes(ListNode *head, int k) {
-        ListNode *node = head;
-        for (int i = 0; i < k; i++) {
-            if (node->next == NULL) {
-                return node;
+    ListNode *reverseKGroup(ListNode *head, int k) {
+        if(head==NULL||k==1) return head;
+        int num=0;
+        ListNode *preheader = new ListNode(-1);
+        preheader->next = head;
+        ListNode *cur = preheader, *nex, *pre = preheader;
+        while(cur = cur->next) 
+            num++;
+        while(num>=k) {
+            cur = pre->next;
+            nex = cur->next;
+            for(int i=1;i<k;++i) {
+                cur->next=nex->next;
+                nex->next=pre->next;
+                pre->next=nex;
+                nex=cur->next;
             }
-            node = node->next;
+            pre = cur;
+            num-=k;
         }
-        ListNode *n1 = head->next;
-        ListNode *curt = n1;
-        ListNode *next = curt->next;
-        for (int i = 0; i < k - 1; i++) {
-            if (next == NULL) {
-                n1->next = NULL;
-                break;
-            }
-            ListNode *temp = next->next;
-            next->next = curt;
-            curt = next;
-            next = temp;
-        }
-        head->next = curt;
-        n1->next = next;
-        return n1;
+        return preheader->next;
     }
 };
