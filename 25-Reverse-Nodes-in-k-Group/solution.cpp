@@ -15,7 +15,6 @@ public:
         new_head->next = head;
         ListNode *cur = new_head, *nex, *pre = new_head;
         while(cur = cur->next) {num++;}
-            //num++;
         while(num >= k) {
             cur = pre->next;
             nex = cur->next;
