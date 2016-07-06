@@ -8,7 +8,7 @@
  */
 class Solution {
 public:
-    /*ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode *dummy = new ListNode(0);
         dummy->next = head;
         head = dummy;
@@ -16,7 +16,7 @@ public:
             head = reverseKNodes(head, k);
         }
         return dummy->next;
-    }*/
+    }
     // reverse the next k nodes AFTER head: head->n1->n2..->nk->.. => head->nk->nk-1...->n1->..
     // return n1 (the next head)
     ListNode *reverseKNodes(ListNode *head, int k) {
