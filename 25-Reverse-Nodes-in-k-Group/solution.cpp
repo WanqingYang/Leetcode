@@ -28,6 +28,6 @@ public:
             pre = cur;
             num-=k;
         }
-        return preheader->next;
+        return new_head->next;
     }
 };
