@@ -6,34 +6,28 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution { 
-public: 
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        if (!hasKNodes(head, k)) return head;
-        ListNode* new_head = new ListNode(0);
-        new_head -> next = head;
-        ListNode* pre = new_head;
-        ListNode* cur = head;
-        while (hasKNodes(cur, k)) {
-            for (int i = 0; i < k - 1; i++) {
-                ListNode* temp = pre -> next;
-                pre -> next = cur -> next;
-                cur -> next = cur -> next -> next;
-                pre -> next -> next = temp; 
+class Solution {
+public:
+    ListNode *reverseKGroup(ListNode *head, int k) {
+        if(head==NULL||k==1) return head;
+        int num=0;
+        ListNode *preheader = new ListNode(-1);
+        preheader->next = head;
+        ListNode *cur = preheader, *nex, *pre = preheader;
+        while(cur = cur->next) 
+            num++;
+        while(num>=k) {
+            cur = pre->next;
+            nex = cur->next;
+            for(int i=1;i<k;++i) {
+                cur->next=nex->next;
+                nex->next=pre->next;
+                pre->next=nex;
+                nex=cur->next;
             }
             pre = cur;
-            cur = pre -> next;
+            num-=k;
         }
-        return new_head -> next;
-    }
-private:
-    bool hasKNodes(ListNode* node, int k) {
-        int cnt = 0;
-        while (node) {
-            cnt++;
-            if (cnt >= k) return true;
-            node = node -> next;
-        }
-        return false; 
+        return preheader->next;
     }
 };
