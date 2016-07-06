@@ -14,12 +14,12 @@ public:
         ListNode *new_head = new ListNode(-1);
         new_head->next = head;
         ListNode *cur = new_head, *nex, *pre = new_head;
-        while(cur = cur->next) 
-            num++;
-        while(num>=k) {
+        while(cur = cur->next) {num++;}
+            //num++;
+        while(num >= k) {
             cur = pre->next;
             nex = cur->next;
-            for(int i=1;i<k;++i) {
+            for(int i = 1;i < k;++i) {
                 cur->next=nex->next;
                 nex->next=pre->next;
                 pre->next=nex;
