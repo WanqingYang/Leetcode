@@ -10,7 +10,7 @@ class Solution {
 public:
     void merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
     //ListNode* merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
-        if(l1 == NULL && l2 == NULL){return;}
+        if(l1 == NULL || l2 == NULL){tail->next = l1?l1:l2; return;}
         if(l1->val <= l2->val){
             tail->next = l1;
             l1 = l1->next;
