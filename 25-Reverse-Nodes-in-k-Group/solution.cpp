@@ -9,7 +9,7 @@
 class Solution {
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
-        if(head==NULL||k==1||k==0) return head;
+        if(head|| head->next || k==1 || k==0) return head;
         int num=0;
         ListNode *preheader = new ListNode(-1);
         preheader->next = head;
