@@ -10,7 +10,7 @@ class Solution {
 public:
     void merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
     //ListNode* merge_helper(ListNode *l1, ListNode *l2, ListNode *tail){
-        if(l1 == NULL || l2 == NULL){return;}
+        if(l1 == NULL && l2 == NULL){return;}
         if(l1->val <= l2->val){
             tail->next = l1;
             l1 = l1->next;
@@ -23,8 +23,6 @@ public:
     }
     
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        if(l1 == NULL && l2->val == 0){return l2;}
-        if(l1 == NULL && l2 == NULL){return l1;}
         ListNode dummy_head(0);
         ListNode *tail = &dummy_head;
         merge_helper(l1, l2, tail);
