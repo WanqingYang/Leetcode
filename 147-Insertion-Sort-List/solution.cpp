@@ -19,11 +19,11 @@ public:
                 {pre = pre -> next;}
                 // set temp to rellocate the pointer:
                 //Insert cur -> next after pre 
-                ListNode *temp = pre -> next;
-                pre -> next = cur -> next;
-                cur -> next = cur -> next -> next;
-                pre -> next -> next = temp;
-                pre = new_head;
+                ListNode *temp = pre -> next;        //the order is important
+                pre -> next = cur -> next;          //1.pre->next,
+                cur -> next = cur -> next -> next; //2.cur->next
+                pre -> next -> next = temp;       //3.pre->next->next
+                pre = new_head;                  //if change 2&3',no pointer points to cur->next->next
             } else{
                 cur = cur -> next;
             }
