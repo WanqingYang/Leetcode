@@ -14,15 +14,15 @@ public:
         ListNode *pre = new_head, *cur = head;
         
         while(cur != NULL){
-            if(cur-> next != NULL && cur -> val > cur -> next -> val){
-                while(pre -> next -> val > cur -> next -> val)
+            if(cur-> next != NULL && cur -> val < cur -> next -> val){
+                while(pre -> next -> val < cur -> next -> val)
                 {pre = pre -> next;}
                 // set temp to rellocate the pointer:
                 //Insert cur -> next after pre && pre -> next ->next
                 ListNode *temp = pre -> next;
                 pre -> next = cur -> next;
-                pre -> next -> next = temp;
                 cur -> next = cur -> next -> next;
+                pre -> next -> next = temp;
                 pre = new_head;
             } else{
                 cur = cur -> next;
