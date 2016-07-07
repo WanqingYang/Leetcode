@@ -15,7 +15,7 @@ public:
         
         while(cur != NULL){
             if(cur-> next != NULL && cur -> val > cur -> next -> val){
-                while(pre -> next -> val < cur -> next -> val)
+                while(pre -> next -> val > cur -> next -> val)
                 {pre = pre -> next;}
                 // set temp to rellocate the pointer:
                 //Insert cur -> next after pre && pre -> next ->next
