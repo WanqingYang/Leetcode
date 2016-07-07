@@ -6,34 +6,22 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
-public:
- ListNode *deleteDuplicate(ListNode *head){
-          if(head == nullptr)
-             return head;
 
-          ListNode dummy(INT_MIN);
-          dummy.next = head;
-          ListNode *prev = &dummy, *cur = head;
-          while(cur){
-             bool duplicated = false;
-             while(cur->next && cur->next->val == cur->val){
-                     duplicated = true;
-                     ListNode *tmp = cur;
-                     cur = cur->next;
-                     delete tmp;
-                   }
-             if(duplicated){
-                  ListNode *tmp = cur;
-                  cur = cur->next;
-                  delete tmp;
-                  continue;
-               }
-               prev->next = cur;
-               prev = prev->next;
-               cur = cur->next;
-           }
-            prev->next = cur;
-            return dummy.next;
-     }
+ class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (!head) return 0;
+        if (!head->next) return head;
+        
+        int val = head->val;
+        ListNode* p = head->next;
+        
+        if (p->val != val) {
+            head->next = deleteDuplicates(p);
+            return head;
+        } else {
+            while (p && p->val == val) p = p->next;
+            return deleteDuplicates(p);
+        }
+    }
 };
