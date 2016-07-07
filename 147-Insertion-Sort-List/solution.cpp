@@ -15,7 +15,7 @@ public:
         ListNode* cur = head;
         while (cur) {
             if (cur -> next && cur -> next -> val < cur -> val) {
-                while (pre -> next && pre -> next -> val < cur -> next -> val)
+                while (pre -> next -> val < cur -> next -> val)
                     pre = pre -> next;
                 /* Insert cur -> next after pre.*/
                 ListNode* temp = pre -> next;
