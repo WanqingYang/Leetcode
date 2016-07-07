@@ -21,9 +21,8 @@ public:
                 //Insert cur -> next after pre 
                 ListNode *temp = pre -> next;
                 pre -> next = cur -> next;
-                pre -> next -> next = temp;
                 cur -> next = cur -> next -> next;
-                //pre -> next -> next = temp;
+                pre -> next -> next = temp;
                 pre = new_head;
             } else{
                 cur = cur -> next;
