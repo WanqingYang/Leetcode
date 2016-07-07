@@ -18,11 +18,12 @@ public:
                 while(pre -> next -> val < cur -> next -> val)
                 {pre = pre -> next;}
                 // set temp to rellocate the pointer:
-                //Insert cur -> next after pre && pre -> next ->next
+                //Insert cur -> next after pre 
                 ListNode *temp = pre -> next;
                 pre -> next = cur -> next;
-                cur -> next = cur -> next -> next;
                 pre -> next -> next = temp;
+                cur -> next = cur -> next -> next;
+                //pre -> next -> next = temp;
                 pre = new_head;
             } else{
                 cur = cur -> next;
