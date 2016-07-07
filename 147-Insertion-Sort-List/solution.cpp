@@ -10,24 +10,25 @@ class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
         ListNode* new_head = new ListNode(0);
-        new_head -> next = head;
-        ListNode* pre = new_head;
-        ListNode* cur = head;
-        while (cur) {
-            if (cur -> next && cur -> next -> val < cur -> val) {
-                while (pre -> next -> val < cur -> next -> val)
-                pre = pre -> next;
-                /* Insert cur -> next after pre.*/
-                ListNode* temp = pre -> next;
+        new_head->next = head;
+        ListNode *pre = new_head, *cur = head;
+        
+        while(cur != NULL){
+            if(cur-> next != NULL && cur -> val > cur -> next -> val){
+                while(pre -> next -> val < cur -> next -> val)
+                {pre = pre -> next;}
+                // set temp to rellocate the pointer:
+                //Insert cur -> next after pre && pre -> next ->next
+                ListNode *temp = pre -> next;
                 pre -> next = cur -> next;
-                cur -> next = cur -> next -> next;
                 pre -> next -> next = temp;
-                /* Move pre back to new_head. */
+                cur -> next = cur -> next -> next;
                 pre = new_head;
+            } else{
+                cur = cur -> next;
             }
-            else cur = cur -> next;
         }
-        ListNode* res = new_head -> next;
+        ListNode *res = new_head -> next;
         delete new_head;
         return res;
     }
