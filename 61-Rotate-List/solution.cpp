@@ -10,7 +10,7 @@ class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
       if(head == nullptr) return head;
-      Node *cur = head, *new, *last;
+      ListNode *cur = head, *new, *last;
       for(int i = 1; i < k && cur; ++i)
               cur = cur->next;
 
