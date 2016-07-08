@@ -10,8 +10,8 @@ class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         ListNode *fast = head, *slow = head;
-        if(head == NULL || k == 0 || head -> next == NULL){return head;}
-        int len = 1;
+        if(head == NULL/* || k == 0 || head -> next == NULL*/){return head;}
+        int len = 1;                          //calculate number of nodes
         while(fast -> next != NULL){
             fast = fast -> next;
             len++;
