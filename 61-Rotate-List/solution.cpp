@@ -9,17 +9,21 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-      if(head == nullptr) return head;
-      ListNode *cur = head, *new1, *last;
-      for(int i = 1; i < k && cur; ++i)
-              cur = cur->next;
-
-      new1 = cur->next; last = new1;
-      cur->next = nullptr;
-      while(last->next)
-             last = last->next;
-      last->next = head;
-
-      return new1;
+        ListNode *fast = head, *slow = head;
+        if(head == NULL || k == 0 || head -> next == NULL){return head;}
+        int len = 1;
+        while(fast -> next != NULL){
+            fast = fast -> next;
+            len++;
+        }
+        ListNode* last = fast -> next;
+        fast -> next = head;                             // cycle the list
+        k = k % len;
+        for(int j = 0; j < len - k; j++){
+            fast = fast -> next;
+        }
+        ListNode *new_head = fast -> next;
+        fast -> next = last;
+        return new_head;
     }
 };
