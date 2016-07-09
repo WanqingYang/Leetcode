@@ -3,11 +3,11 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map <int, int> find_index;
-        unsigned int i;
+        //unsigned int i;
         vector<int> result;
         int sec_num;
         
-        for(i = 0; i < nums.size(); i++)
+        for(int i = 0; i < nums.size(); i++)
         {
             sec_num = target - nums[i];
             if(find_index.find(sec_num) != find_index.end())
