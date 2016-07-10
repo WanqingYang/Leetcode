@@ -27,7 +27,9 @@ public:
             l3 = l3 -> next;
             sum /= 10;
         }
-        if(sum == 1){l3->next = new ListNode(1);}    //?????? 
-        return dummy->next;
+        if(sum == 1){l3->next = new ListNode(1);}
+        ListNode result = dummy -> next;
+        delete dummy;
+        return result;
     }
 };
