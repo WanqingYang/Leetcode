@@ -11,8 +11,8 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* l3 = new ListNode(0);
-        ListNode* dummy = l3;   // dummy head, get the list from the beginning
+        ListNode dummy(0);
+        ListNode* l3 = &dummy;   // dummy head, get the list from the beginning
         int sum = 0;
         while(l1 || l2){
             if(l1){
@@ -28,8 +28,6 @@ public:
             sum /= 10;
         }
         if(sum == 1){l3->next = new ListNode(1);}
-        ListNode result = dummy -> next;
-        delete dummy;
-        return result;
+        return dummy.next;
     }
 };
