@@ -14,15 +14,12 @@ public:
         ListNode* l3 = new ListNode(0);
         ListNode* dummy = l3;   // dummy head, get the list from the beginning
         int sum = 0;
-        while(l1 || l2)
-        {
-            if(l1)
-            {
+        while(l1 || l2){
+            if(l1){
                 sum += l1->val;
                 l1 = l1->next;   // ListNode* l1 = l1->next;
             }
-            if(l2)
-            {
+            if(l2){
                 sum += l2->val;
                 l2 = l2->next;
             }
@@ -30,9 +27,7 @@ public:
             l3 = l3 -> next;
             sum /= 10;
         }
-        
         if(sum == 1){l3->next = new ListNode(1);}    //?????? 
-
         return dummy->next;
     }
 };
