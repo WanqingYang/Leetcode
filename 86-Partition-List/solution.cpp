@@ -9,19 +9,18 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        if(head == NULL || head -> next == NULL){return head;}
-        ListNode small_dh(0), large_dh(0);
-        ListNode *small = &small_dh, *large = &large_dh;
+        ListNode left(0), right(0);
+        ListNode *l = &left, *r = &right;
+
         while(head){
-            if(head -> val < x){
-                small -> next = new ListNode(head -> val);
-            } else{
-                large -> next = new ListNode(head -> val);
-            }
-            head = head -> next;
+            ListNode* & ref = head->val < x ? l : r;
+            ref->next = head;
+            ref = ref->next;
+            
+            head = head->next;
         }
-        small -> next = large_dh.next;
-        large -> next = NULL;
-        return small_dh.next;
+        l->next = right.next;
+        r->next = NULL;
+        return left.next;
     }
 };
