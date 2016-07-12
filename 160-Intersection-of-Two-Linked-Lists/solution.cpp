@@ -33,8 +33,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if (p1 == NULL) p1 = headB;
         if (p2 == NULL) p2 = headA;
     }
-}
-        
     return p1;
+}
 
 };
