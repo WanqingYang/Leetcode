@@ -19,4 +19,5 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if(l2 == NULL){l2 = headA;}
     }
     return l1; //l1&l2 are the same list
+  }
 };
