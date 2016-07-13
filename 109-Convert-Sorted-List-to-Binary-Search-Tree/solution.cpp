@@ -47,30 +47,26 @@ public:
 //Top down
 class Solution {
 public:
-    TreeNode *sortedListToBST(ListNode *head)
-    {
-    	return sortedListToBST( head, NULL );
+    TreeNode *sortedListToBST(ListNode *head){
+        return sortedListToBST1(head, NULL);
     }
     
-private:
-    TreeNode *sortedListToBST(ListNode *head, ListNode *tail)
-    {
-    	if( head == tail )
-    		return NULL;
-    	if( head->next == tail )    // 
-    	{	
-    		TreeNode *root = new TreeNode( head->val );
-    		return root;
-    	}
-    	ListNode *mid = head, *temp = head;
-    	while( temp != tail && temp->next != tail )    // 寻找中间节点
-    	{
-    		mid = mid->next;
-    		temp = temp->next->next;
-    	}
-    	TreeNode *root = new TreeNode( mid->val );
-    	root->left = sortedListToBST( head, mid );
-    	root->right = sortedListToBST( mid->next, tail );
-    	return root;
+//private:
+    TreeNode *sortedListToBST1(ListNode *head, ListNode *tail){
+        if(head == tail){return NULL;}
+        if(head -> next == tail){
+            TreeNode *root = new TreeNode(head -> val);
+            return root;
+        }
+        //find the middle point
+        ListNode *mid = head, *fast = head -> next;
+        while(fast != tail && fast -> next != tail){ 
+            mid = mid -> next;
+            fast = fast -> next -> next;
+        }
+        TreeNode *root = new TreeNode(mid -> val); //mid, not head
+        root -> left = sortedListToBST1(head, mid);
+        root -> right = sortedListToBST1(mid -> next, tail);
+        return root;
     }
 };
