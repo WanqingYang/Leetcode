@@ -33,7 +33,7 @@ public:
     TreeNode *buildBST(ListNode* &list, int start, int end){
         if(start > end){return NULL;}
         int mid = start + (end - start)/2; //same as (start+end)/2, avoid overflow
-        //TreeNode *root = new TreeNode(list -> val); //must use new here
+        //TreeNode *root = new TreeNode(list -> val); //do not create here,for the next line recursion will continue create new TreeNode
         TreeNode *leftChild = buildBST(list, start, mid - 1);//mid is tree val,mid-1 store left
         TreeNode *root = new TreeNode(list -> val); //must use new here
         root -> left = leftChild;
