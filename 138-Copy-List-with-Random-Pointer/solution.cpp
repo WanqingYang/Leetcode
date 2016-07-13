@@ -10,6 +10,7 @@
 class Solution {
 public:
     RandomListNode *copyRandomList(RandomListNode *head) {
+        if(head == NULL){return NULL;}
         // Build the 2nd list by creating a new node for each node in 1st list.
         RandomListNode *newHead, *l1, *l2;
         for(l1 = head; l1 != NULL; l1 = l1 -> next -> next){
