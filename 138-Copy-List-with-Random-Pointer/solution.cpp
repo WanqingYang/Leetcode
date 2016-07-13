@@ -27,8 +27,9 @@ public:
         
         // The new head is the 2nd node as that was the first inserted node.
         newHead = head -> next;
+        
         // Separate the combined list into 2: Splice out nodes that are part of second list. 
-        for(l1 = head; l1 != NULL; l1 = l1 -> next -> next){
+        for(l1 = head; l1 != NULL; l1 = l1 -> next){
             /*l2 -> next = l1 -> next -> next;
             l2 -> random = l1 -> random -> next;
             l2 = l2 -> next;*/
