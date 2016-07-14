@@ -22,7 +22,7 @@ public:
     }
 };*/
 
-class Solution {
+/*class Solution {
 public:
     bool isSymmetric(TreeNode *root) {
         TreeNode *left, *right;
@@ -50,7 +50,7 @@ public:
         }
         return true;
     }
-};
+};*/
 
 class Solution {
 public:
