@@ -8,14 +8,34 @@
  * };
  */
  //iteration
-/*class Solution {
+class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> v;
+        stack<TreeNode*> s;
+        TreeNode* cur = root, *lastNode = NULL;
         
-    }
-};*/
+        while(!s.empty() || cur){
+            if(cur){
+                s.push(cur);
+                cur = cur -> left;
+            }else{
+                TreeNode *top = s.top();
+                if(top -> right/*need print*/ && lastNode != top -> right/*if back to root*/){
+                    cur = top -> right;
+                }else{
+                    v.push_back(top -> val);
+                    lastNode = top;
+                    s.pop();
+                }
+            }
 
-//recursion
+        }
+        return v;
+    }
+};
+
+/*//recursion
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
@@ -30,7 +50,7 @@ public:
         helper(p -> right, v);
         v.push_back(p -> val);
     }
-};
+};*/
 
 /*//Morris Traversal
 class Solution {
