@@ -20,7 +20,7 @@
              }else{
                  //find predecessor
                  pre = cur -> left;
-                 while(cur -> right != NULL && pre -> right != cur){
+                 while(pre -> right != NULL && pre -> right != cur){
                      pre = pre -> right;
                  }
                  
