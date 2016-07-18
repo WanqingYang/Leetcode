@@ -12,7 +12,7 @@ public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         queue<TreeNode*> q;
         vector<vector<int>> v;
-        q.push(root);
+        if(root != NULL){q.push(root);}
         //vector<int> vRow; //cannot use it here, for it need to be empty after finish each row
         
         //end when nothing left in queue
