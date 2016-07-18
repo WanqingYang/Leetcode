@@ -24,7 +24,7 @@ public:
     }
 };*/
 
-//iteration
+/*//iteration, use stack to imitate recursion
 class Solution{
 public:
     vector<int> preorderTraversal(TreeNode* root) {
@@ -43,7 +43,36 @@ public:
         }
         return v;
     }
-};
+};*/
 
 
 //Morris Traversal
+class Solution{
+public:
+    vector<int> preorderTraversal(TreeNode* root){
+        TreeNode *cur = root, *pre = NULL;
+        vector<int> v;
+        while(cur){
+            if(cur -> left == NULL){
+                v.push_back(cur -> val);
+                cur = cur -> right;
+            }
+            else{
+                //find its inorder predecessor
+                pre = cur -> left;
+                while(pre -> right != NULL && pre -> right != cur){
+                    pre = pre -> right;
+                }
+                if(pre -> right == NULL){
+                    v.push_back(cur -> val);
+                    pre -> right = cur;
+                    cur = cur -> left;
+                }else{
+                    pre -> right = NULL;
+                    cur = cur -> right;
+                }
+            }
+        }
+        return v;
+    }
+};
