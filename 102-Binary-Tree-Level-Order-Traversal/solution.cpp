@@ -9,44 +9,25 @@
  */
 class Solution {
 public:
-   /* vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int>> levelOrder(TreeNode* root) {
         queue<TreeNode*> q;
         vector<vector<int>> v;
-        if(root == NULL){return v;}
         q.push(root);
-        vector<int> vRow; //temp vector, store every row of return matrix
+        //vector<int> vRow; //cannot use it here, for it need to be empty after finish each row
         
         //end when nothing left in queue
-        while(!q.Empty()){
-            //int size = q.size();
-            TreeNode *cur = q.front();
-            vRow.push_back(cur -> val);
-            for(int i = 0; i < q.size(); ++i){
-                if(cur -> left){q.push(cur -> left)};
-                if(cur -> right){q.push(cur -> right)};
+        while(!q.empty()){
+            int len = q.size(); // must fix q.size() at this time, for it will change in the for loop
+            vector<int> vRow; //temp vector, store every row of return matrix
+            for(int i = 0; i < len; ++i){
+                TreeNode *cur = q.front();
+                vRow.push_back(cur -> val);
+                if(cur -> left){q.push(cur -> left);}
+                if(cur -> right){q.push(cur -> right);}
+                q.pop();  //when stored its left and right pointer, pop the TreeNode pointer
             }
             v.push_back(vRow);
-            q.pop();
       }
       return v;
-    }*/
-    vector<vector<int>> levelOrder(TreeNode* root) {
-    vector<vector<int>> ans;
-    queue<TreeNode *> q;
-    if (root) q.push(root);
-    while (!q.empty()) {
-        int len = q.size();
-        vector<int> level;
-        for (int i = 0;i < len;++i) {
-            TreeNode *node = q.front();
-            level.push_back(node->val);
-            if (node->left) q.push(node->left);
-            if (node->right) q.push(node->right);
-            q.pop();
-        }
-        ans.push_back(level);
     }
-    return ans;
-    }
-
 };
