@@ -7,18 +7,18 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-/* //recursion
+ //recursion
 class Solution {
 public:
     int minDepth(TreeNode* root) {
         if(root == NULL){return 0;}
-        while()
+        if(root -> left == NULL){return 1 + minDepth(root -> right);}
+        if(root -> right == NULL){return 1 + minDepth(root -> left);}
         return 1 + min(minDepth(root -> left), minDepth(root -> right));
-        //return root? 1 + min(minDepth(root -> left), minDepth(root -> right)) : 0;
     }
-};*/
+};
 
-//leverl-order traversal
+/*//leverl-order traversal
 class Solution {
 public:
     int minDepth(TreeNode* root) {
