@@ -28,7 +28,6 @@ public:
         if(root){q.push(cur);} //if root is null, then skip this and while below, directly to return
         
         while(!q.empty()){
-            maxDepth++;
             int size =q.size();
             for(int i = 0; i < size; ++i){
                 TreeNode* temp = q.front();
@@ -36,7 +35,7 @@ public:
                 if(temp -> right){q.push(temp -> right);}
                 q.pop();
             }
-            //maxDepth++;
+            maxDepth++;
         }
         return maxDepth;
     }
