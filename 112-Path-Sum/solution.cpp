@@ -7,6 +7,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+/* //recursion
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int sum) {
@@ -16,5 +17,32 @@ public:
         }
         return hasPathSum(root -> left, sum - root -> val) || 
         hasPathSum(root -> right, sum - root -> val);
+    }
+};*/
+
+//level-bfs-iterative solution
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum){
+        if(root == NULL){return false;}
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty()){
+            TreeNode* cur = q.front();
+            q.pop();
+            if(cur -> left == NULL && cur -> right == NULL){
+                if(cur -> val == sum){return true;}
+            }
+            if(cur -> left){
+                cur -> left -> val += cur -> val;
+                q.push(cur -> left);
+            }
+            if(cur -> right){
+                cur -> right -> val += cur -> val;
+                q.push(cur -> right);
+            }
+        }
+        return false;
     }
 };
