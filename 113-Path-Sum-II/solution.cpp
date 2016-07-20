@@ -30,63 +30,36 @@ public:
 };*/
 
 //iteration
-/*class Solution{
+class Solution{
 public:
     vector<vector<int>> pathSum(TreeNode* root, int sum){
-        vector<int> path;
-        vector<vector<int>> v;
-        queue<TreeNode*> q;
-        if(root){q.push(root);}
-        while(!q.empty()){
-            TreeNode *cur = q.front();
-            path.push_back(cur -> val);
-            if(!(cur -> left) && !(cur -> right) && cur -> val == sum){
-                v.push_back(path);
+        vector<vector<int>> result;
+        vector<TreeNode*> s;
+        //use two pointers, when cur -> right = pre, means have gotten to the end
+        TreeNode *cur = root, *pre = NULL; 
+        int value = 0; //calculate sum in the process
+        
+        while(!s.empty() || cur){ //the first time, s is empty
+            //until cur is null, to its left most
+            while(cur){
+                s.push_back(cur);
+                value += cur -> val;
+                cur = cur -> left;
             }
-            if(cur -> left){
-                //path.push_back(cur -> left -> val);
-                cur -> left -> val += cur -> val;
-                q.push(cur -> left);
+            cur = s.back(); //get its last element
+            vector<int> path;
+            for(auto i : s){ //int i = 0; i < s.size(); i++
+                path.push_back(i-> val); //i is the same type as s, which is TreeNode*
             }
-            if(cur -> right){
-                //path.push_back(cur -> right -> val);
-                cur -> right -> val += cur -> val;
-                q.push(cur -> right);
+            if(!(cur -> left) && !(cur -> right) && value == sum){
+                result.push_back(path);
             }
-            q.pop();
-            path.pop_back();
-        }
-        return v;
-    }
-};*/
-
-class Solution {
-public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
-        vector<vector<int> > result;
-        vector<TreeNode*> st;
-        TreeNode *pre = NULL, *cur = root;
-        int value = 0;
-        while (cur || !st.empty()) {
-            while (cur) {
-                st.push_back(cur);
-                value += cur->val;
-                cur = cur->left;
-            }
-            cur = st.back();
-            if (!cur->left && !cur->right && value == sum) {
-                vector<int> t;
-                for (auto i : st) {
-                    t.push_back(i->val);
-                }
-                result.push_back(t);
-            }
-            if (cur->right && cur->right != pre) {
-                cur = cur->right;
-            } else {
+            if(cur -> right && cur -> right != pre){ //access the right tree,and not to the end
+                cur = cur -> right;
+            }else{
                 pre = cur;
-                value -= cur->val;
-                st.pop_back();
+                value -= cur -> val;
+                s.pop_back();  //go back to second last pointer
                 cur = NULL;
             }
         }
