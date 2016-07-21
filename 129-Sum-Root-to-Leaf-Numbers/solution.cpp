@@ -7,6 +7,36 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+/*class Solution{
+public:
+    int sumNumbers(TreeNode* root) {
+        return traverse(root, 0);
+    }
+    
+    int traverse(TreeNode *cur, int parents){
+        if(!cur){return 0;}                   //base case
+        int soFar = parents * 10 + cur -> val;//1->2 represents 12
+        int sum = traverse(cur -> left, soFar) + traverse(cur -> right, soFar);
+        return (sum)? sum : soFar;
+        //return sum;
+    }
+};*/
+
+class Solution{
+public:
+    int sumNumbers(TreeNode* root) {
+        return traverse(root, 0);
+    }
+    int traverse(TreeNode *cur, int parents){
+        if(!cur){return 0;}
+        if(!(cur -> left)  && !(cur -> right)){
+            return parents * 10 + cur -> val;
+        }
+        return traverse(cur -> left, 10 * parents + cur -> val) +
+        traverse(cur -> right, 10 * parents + cur -> val);
+    }
+};
+
 /*//my code, wrong
 class Solution {
 public:
@@ -27,17 +57,3 @@ public:
         helper(cur -> right, sum);
     }
 };*/
-
-class Solution{
-public:
-    int sumNumbers(TreeNode* root) {
-        return traverse(root, 0);
-    }
-    
-    int traverse(TreeNode *cur, int parents){
-        if(!cur){return 0;}
-        int soFar = parents * 10 + cur -> val;
-        int sum = traverse(cur -> left, soFar) + traverse(cur -> right, soFar);
-        return (sum)? sum : soFar;
-    }
-};
