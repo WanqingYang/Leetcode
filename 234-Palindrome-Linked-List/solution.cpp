@@ -39,8 +39,8 @@ public:
     }
     
     bool check(ListNode* p) {
-        if (NULL == p) return true;
-        bool isPal = check(p->next) & (temp->val == p->val);
+        if (p == NULL) {return true;}
+        bool isPal = check(p->next) && (temp->val == p->val);
         temp = temp->next;
         return isPal;
     }
