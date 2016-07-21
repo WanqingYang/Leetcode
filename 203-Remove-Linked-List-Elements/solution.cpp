@@ -19,14 +19,12 @@ public:
                 pre -> next = cur -> next;
                 cur = pre -> next;
                 delete temp;
-    
-            }
-            if(cur == NULL){return head;}
-            else{
+            }else{
                 cur = cur -> next;
                 pre = pre -> next;
             }
+            if(cur == NULL){return dummy.next;}
         }
-        return head;
+        return dummy.next;
     }
 };
