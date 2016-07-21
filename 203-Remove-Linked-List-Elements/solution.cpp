@@ -6,16 +6,27 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+class Solution{
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode *pseudo_head = new ListNode(0);
-        pseudo_head->next = head;
-        ListNode *cur = pseudo_head;
+        if(head == NULL){return head;}  //it is "==", not"=", in judgement sentence!!!
+        ListNode dummy(0);
+        ListNode *pre = &dummy, *cur = head;
+        dummy.next = head;
         while(cur){
-            if(cur->next && cur->next->val == val)   cur->next = cur->next->next;
-            else    cur = cur->next;
+            if(cur -> val == val){
+                ListNode *temp = cur;
+                pre -> next = cur -> next;
+                cur = pre -> next;
+                delete temp;
+    
+            }
+            if(cur == NULL){return head;}
+            else{
+                cur = cur -> next;
+                pre = pre -> next;
+            }
         }
-        return pseudo_head->next;
+        return head;
     }
 };
