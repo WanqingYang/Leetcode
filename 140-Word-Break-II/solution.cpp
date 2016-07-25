@@ -41,9 +41,6 @@ public:
                 int old_size = result.size();
                 if(dp[i] == 0){
                     findWords(i, s, wordDict, ans, dp, mapWord, result);
-                    //remove the finished word from ans
-                    int back_size = ans.size() == i ? i : i + 1;
-                    ans.erase(ans.size() - back_size); //when finished pop;
                     if(result.size() > old_size){
                         dp[i] = 1;
                         //mapWord[i].push_back(i + sub.size()); //i is the word beginning index
@@ -69,9 +66,10 @@ public:
                         result.push_back(ans);
                     }
                     */
-                }else{  //dp == -1;`
-                    continue;
                 }
+                //remove the finished word from ans
+                int back_size = ans.size() == i ? i : i + 1;
+                ans.erase(ans.size() - back_size); //when finished pop;
             }
         }
     }
