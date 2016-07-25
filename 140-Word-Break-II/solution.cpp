@@ -17,9 +17,9 @@ public:
         vector<int>* t = &mapWord[index];
         for(int i = 0; i < t->size(); ++i)
         {
-            ans.append(" " + s.substr(index, t[i] - index));
-            writeAnswer(s, ans, result, mapWord, t[i]);
-            ans.erase(ans.size() - (t[i] - index + 1));
+            ans.append(" " + s.substr(index, (*t)[i] - index));
+            writeAnswer(s, ans, result, mapWord, (*t)[i]);
+            ans.erase(ans.size() - ((*t)[i] - index + 1));
         }
     }
     
@@ -31,7 +31,7 @@ public:
         }
         
         //for(int i = 1; i < s.size() - index; i++){
-        for(int i = 1 + index; i < s.size(); i++){
+        for(int i = 1 + index; i <= s.size(); i++){
             //string sub = s.substr(index, i);
             string sub = s.substr(index, i - index);
             if(wordDict.find(sub) != wordDict.end()){ 
@@ -43,7 +43,7 @@ public:
                     findWords(i, s, wordDict, ans, dp, mapWord, result);
                     //remove the finished word from ans
                     int back_size = ans.size() == i ? i : i + 1;
-                    ans.erase(ans.size() - back_size, back_size); //when finished pop;
+                    ans.erase(ans.size() - back_size); //when finished pop;
                     if(result.size() > old_size){
                         dp[i] = 1;
                         //mapWord[i].push_back(i + sub.size()); //i is the word beginning index
