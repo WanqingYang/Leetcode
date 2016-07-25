@@ -23,7 +23,7 @@ public:
         }
     }
     
-    void findWords(int index, string &s, unordered_set<string>& wordDict, string ans, vector<int> &dp,
+    void findWords(int index, string &s, unordered_set<string>& wordDict, string &ans, vector<int> &dp,
     unordered_map<int, vector<int>> &mapWord, vector<string> &result){
         if(index == s.size()){
             result.push_back(ans);
@@ -50,7 +50,7 @@ public:
                     }
                 }else if(dp[i] == 1){
                     //print the answer
-                    //writeAnswer(s, ans, result, mapWord, index);
+                    writeAnswer(s, ans, result, mapWord, index);
                     /*
                     //cut branches
                     int mapSize = mapWord[i].size();
