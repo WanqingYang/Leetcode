@@ -50,7 +50,7 @@ public:
                     }
                 }else if(dp[i] == 1){
                     //print the answer
-                    writeAnswer(s, ans, result, mapWord, index);
+                    //writeAnswer(s, ans, result, mapWord, index);
                     /*
                     //cut branches
                     int mapSize = mapWord[i].size();
