@@ -1,3 +1,10 @@
+/**
+ * 
+ * 
+ * 
+ **/ 
+
+
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -5,11 +12,11 @@ public:
         int maxLen = 0;
         vector<int> charIndex(256, -1);    //??????????
       
-        for(int i = 0; i < s.size(); ++i)
-        {
-          start = max(start, charIndex[s[i]]);
-          charIndex[s[i]] = i;
-          maxLen = max(maxLen, i - start);
+        for(int i = 0; i < s.size(); ++i){
+            if(CharIndex > start){start = charIndex[s[i]];}
+            //start = max(start, charIndex[s[i]]);
+            charIndex[s[i]] = i;
+            maxLen = max(maxLen, i - start);
         }
         return maxLen;
         
