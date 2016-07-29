@@ -7,6 +7,7 @@ If we can ensure:
 
 1) len(left_part) == len(right_part)
 2) max(left_part) <= min(right_part)
+
 then we divide all elements in {A, B} into two parts with equal length, and one part is always greater than the other. Then median = (max(left_part) + min(right_part))/2.
 To ensure these two conditions, we just need to ensure:
 
@@ -19,7 +20,36 @@ So, all we need to do is:
 
 Searching i in [0, m], to find an object `i` that:
     B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )
- * 
+ * And we can do a binary search following steps described below:
+
+<1> Set imin = 0, imax = m, then start searching in [imin, imax]
+
+<2> Set i = (imin + imax)/2, j = (m + n + 1)/2 - i
+
+<3> Now we have len(left_part)==len(right_part). And there are only 3 situations
+     that we may encounter:
+    <a> B[j-1] <= A[i] and A[i-1] <= B[j]
+        Means we have found the object `i`, so stop searching.
+    <b> B[j-1] > A[i]
+        Means A[i] is too small. We must `ajust` i to get `B[j-1] <= A[i]`.
+        Can we `increase` i?
+            Yes. Because when i is increased, j will be decreased.
+            So B[j-1] is decreased and A[i] is increased, and `B[j-1] <= A[i]` may
+            be satisfied.
+        Can we `decrease` i?
+            `No!` Because when i is decreased, j will be increased.
+            So B[j-1] is increased and A[i] is decreased, and B[j-1] <= A[i] will
+            be never satisfied.
+        So we must `increase` i. That is, we must ajust the searching range to
+        [i+1, imax]. So, set imin = i+1, and goto <2>.
+    <c> A[i-1] > B[j]
+        Means A[i-1] is too big. And we must `decrease` i to get `A[i-1]<=B[j]`.
+        That is, we must ajust the searching range to [imin, i-1].
+        So, set imax = i-1, and goto <2>.
+When the object i is found, the median is:
+
+max(A[i-1], B[j-1]) (when m + n is odd)
+or (max(A[i-1], B[j-1]) + min(A[i], B[j]))/2 (when m + n is even)
  **/ 
 
 class Solution {
@@ -27,17 +57,19 @@ public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size(), n = nums2.size();
         if(m > n) {return findMedianSortedArrays(nums2, nums1);} //????deal with when nums2 is empty
-        int i, j, imin = 0, imax = m, half_length = (m + n + 1) / 2,
+        int i, j, imin = 0, imax = m, half_length = (m + n + 1) / 2,/*half_length = (m + n) / 2,*/
         max_left, min_right;
         
         while(imin <= imax)  // ???????why
         {   //i = (imin & imax) + ((imin ^ imax) >> 1);  // why can write like this????
             i = (imin + imax)/2;
             j = half_length - i;
-            if(j > 0 && i < m && nums1[i] < nums2[j - 1]){  //i is too small, increase i
+            //i is too small,increase i;(first element of num1 in right part < last element of num2 in left part)
+            if(j > 0 && i < m && nums1[i] < nums2[j - 1]){
                 imin = i + 1;
             }
-            else if(i > 0 && j < n && nums1[i - 1] > nums2[j]){  //i is too big, decrease it 
+            //i is too big, decrease it;(last element of num1 in left part > first element of num2 in right part)
+            else if(i > 0 && j < n && nums1[i - 1] > nums2[j]){  
                 imax = i - 1;
             }
             else break;                //avoid dead loop
@@ -49,10 +81,9 @@ public:
         else{max_left = max(nums1[i - 1], nums2[j - 1]);}
         if((m + n) % 2 == 1){return double(max_left);}  // m+n is odd
                 
-        //if(i == m){min_right = nums2[j];}
-        //else if(j == n){min_right = nums1[i];}
-        //else{min_right = min(nums1[i], nums2[j]);}
-        min_right = min(nums1[i], nums2[j]);
+        if(i == m){min_right = nums2[j];}  //if i = m = 0, num1[i] will not exist, seg fault
+        else if(j == n){min_right = nums1[i];}
+        else{min_right = min(nums1[i], nums2[j]);}
         return double((max_left + min_right)/2.0);
     }
 };
