@@ -66,4 +66,4 @@ public:
         prev = node;
         return validate(node->right, prev);
     }
-}
+};
