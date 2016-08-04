@@ -29,18 +29,22 @@ public:
         }
         
         for(int i = 1; i < result.size(); i = i + 2){
-            reverse(result[i]);
+            reverse (result[i].begin(), result[i].end());
         }
         return result;
     }
     
     
-    
-    void reverse(vector<int> &change){
+    void swap (int* a, int* b ) {
+        int t = *a;
+        *a = *b;
+        *b = t;
+    }
+/*    void reverse(vector<int> &change){
         int f_size = change.size();
         if(f_size == 0 || f_size == 1){return;}
         for(int i = 0; i < (f_size - 1) / 2; i++){
         swap(&change[i], &change[f_size - 1 - i]);   
         }
-    }
+    }*/
 };
