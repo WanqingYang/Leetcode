@@ -7,8 +7,10 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-//recursion
-/*class Solution {
+
+/*
+//my code
+class Solution {
 public:
     TreeNode* prev = NULL;
     bool isValidBST(TreeNode* root) {
@@ -53,17 +55,25 @@ public:
     }
 };*/
 
+
+/**If we use in-order traversal to serialize a binary search tree, we can get a list of values in ascending order. It can be 
+ * proved with the definition of BST. And here I use the reference of TreeNode pointer prev as a global variable to mark the 
+ * address of previous node in the list.
+ **/
+ 
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         TreeNode* prev = NULL;
         return validate(root, prev);
     }
-    bool validate(TreeNode* node, TreeNode* &prev) {
-        if (node == NULL) return true;
-        if (!validate(node->left, prev)) return false;
-        if (prev != NULL && prev->val >= node->val) return false;
-        prev = node;
-        return validate(node->right, prev);
+    //use the reference of TreeNode pointer prev as a global variable to mark the address of previous node in the list.
+    //the previous node it is cur's predecessor, inorder traversal, if it is valid, then ascending order
+    bool validate(TreeNode* cur, TreeNode* &prev) {
+        if (cur == NULL) return true;  //if left subtree's node goes here,return, then last stack, next step is T, ! is F
+        if (!validate(cur->left, prev)) return false;
+        if (prev != NULL && prev->val >= cur->val) return false; //if prev == NULL, next step, prev = cur
+        prev = cur;
+        return validate(cur->right, prev);//check its successor
     }
 };
