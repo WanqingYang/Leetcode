@@ -7,10 +7,10 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-/* //recursion
-class Solution {
+//recursion
+/*class Solution {
 public:
-    bool result = true;
+    TreeNode* prev = NULL;
     bool isValidBST(TreeNode* root) {
         bool result = true;
         //if(!root){return result}
@@ -31,7 +31,7 @@ public:
         helper(result, root -> left);
         helper(result, root -> right);
     }
-};*/
+};
 
 class Solution {
 private:
@@ -51,4 +51,19 @@ public:
         prev=root;
         return true;
     }
-};
+};*/
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        TreeNode* prev = NULL;
+        return validate(root, prev);
+    }
+    bool validate(TreeNode* node, TreeNode* &prev) {
+        if (node == NULL) return true;
+        if (!validate(node->left, prev)) return false;
+        if (prev != NULL && prev->val >= node->val) return false;
+        prev = node;
+        return validate(node->right, prev);
+    }
+}
