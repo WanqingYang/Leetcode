@@ -19,8 +19,8 @@ public:
         TreeNode *root = new TreeNode(preorder[preStart]);
         int inIndex = 0;
         //next acculate Index of current root in inorder
-        for(int i = inStart; i < inEnd; i++){
-            if(inorder[i] = root -> val){
+        for(int i = inStart; i <= inEnd; i++){
+            if(inorder[i] == root -> val){
                 inIndex = i;
             }
         }
