@@ -17,7 +17,7 @@ public:
     
     TreeNode *helper(vector<int> &nums, int start, int end){
         int _size = end -  start;
-        //if(_size < 0){return NULL;}
+        if(_size < 0){return NULL;}
         if(_size == 0){return new TreeNode(nums[start]);}
         int mid = (start + end)/2;
         TreeNode* root = new TreeNode(nums[mid]);
