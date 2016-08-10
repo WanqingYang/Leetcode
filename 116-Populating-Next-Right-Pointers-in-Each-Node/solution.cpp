@@ -26,11 +26,16 @@ public:
                 store.pop();
                 node -> next = store.front();
                 //store the node( which be removed) 's left and right child(if not null)
-                if(node -> left){store.push(node -> left);}
-                if(node -> right){store.push(node -> right);}
+                if(node -> left){
+                    store.push(node -> left);
+                    store.push(node -> right);
+                }
             }
-            if(store.front() -> left){store.push(store.front() -> left);}
-            if(store.front() -> right){store.push(store.front() -> right);}//this if can be combined above
+            TreeLinkNode* last = store.front();
+            if(last -> left){
+                store.push(last -> left);
+                store.push(last -> right);
+            }
             store.pop();
         }
     }
