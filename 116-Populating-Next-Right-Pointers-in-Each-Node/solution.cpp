@@ -50,7 +50,7 @@ class Solution {
 public:
     void connect(TreeLinkNode *root){
         if(!root){return;}
-        TreeLinkNoden *pre = root, *cur = NULL;
+        TreeLinkNode *pre = root, *cur = NULL;
         
         while(pre -> left){ //if pre -> left == NULL, means it gets the last line
             cur = pre;
