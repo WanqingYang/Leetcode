@@ -14,7 +14,7 @@
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        queue<TreeLinkNode> store;
+        queue<TreeLinkNode*> store;
         TreeLinkNode *cur = root;
         if(cur){store.push(cur);}
         
