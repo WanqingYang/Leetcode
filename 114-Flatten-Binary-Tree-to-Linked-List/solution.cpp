@@ -53,6 +53,11 @@ public:
     }
 };*/
 
+/**very smart solution(Morris Traversal???)
+ * find the current node's predecessor, links it to current node's right(pre -> right = cur -> right)
+ * set current node's right subtree = current node's left subtree
+ * set current node's left to null
+ **/
 class Solution {
 public:
     void flatten(TreeNode *root) {
@@ -61,7 +66,7 @@ public:
 		{
 			if(now->left)
 			{
-                //Find current node's prenode that links to current node's right subtree
+                //Find current node's prenode, and  links to current node's right
 				TreeNode* pre = now->left;
 				while(pre->right)
 				{
@@ -69,7 +74,7 @@ public:
 				}
 				pre->right = now->right;
                 //Use current node's left subtree to replace its right subtree(original right 
-                //subtree is already linked by current node's prenode
+                //subtree is already linked by current node's prenode)
 				now->right = now->left;
 				now->left = NULL;
 			}
