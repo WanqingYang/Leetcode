@@ -7,8 +7,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- //my code; inorder traversal, when print, count++, return when count == k;
-/*class Solution {
+/* //my code; inorder traversal, when print, count++, return when count == k;
+class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
         TreeNode *cur = root, *pre = NULL;
@@ -41,7 +41,7 @@ public:
     }
 };*/
 
-//inorder recursion
+/*//inorder recursion
 class Solution {
 private: int cnt = 0;
 private: int number = 0;
@@ -64,5 +64,31 @@ public:
         if(cur -> right){
             helper(cur -> right);
         }
+    }
+};*/
+
+//inorder, iteration
+class Solution{
+public:
+    int kthSmallest(TreeNode* root, int k){
+        stack<TreeNode*> s;
+        TreeNode* cur = root;
+        if(cur){s.push(cur);}
+        int cnt = k;
+        
+        while(!s.empty()){
+            if(cur){
+                s.push(cur);
+                cur = cur -> left;
+            }else{
+                cnt --;
+                //if(cnt == 0){return cur -> val;}
+                TreeNode *p = s.top();
+                if(cnt == 0){return p -> val;}
+                s.pop();
+                cur = p -> right;
+            }
+        }
+        return -1;
     }
 };
