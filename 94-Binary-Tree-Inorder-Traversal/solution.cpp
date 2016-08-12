@@ -7,7 +7,13 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- //Morris Traversal
+ /**Morris Traversal
+  * 
+  * 
+  * 
+  **/ 
+ 
+/* //Morris Traversal
  class Solution {
  public:
      vector<int> inorderTraversal(TreeNode* root){
@@ -15,10 +21,10 @@
          vector<int> v;
          while(cur != NULL){
              if(cur -> left == NULL){
-                 v.push_back(cur -> val);
+                 v.push_back(cur -> val);  //push_back now
                  cur = cur -> right;
              }else{
-                 //find predecessor
+                 //find predecessor,which is the left subtree's right most child
                  pre = cur -> left;
                  while(pre -> right != NULL && pre -> right != cur){
                      pre = pre -> right;
@@ -28,17 +34,16 @@
                  if(pre -> right != cur){
                      pre -> right = cur;
                      cur = cur -> left;
-                 }
-                 else{
+                 }else{
                      pre -> right = NULL;
-                     v.push_back(cur -> val);
+                     v.push_back(cur -> val); //push_back now
                      cur = cur -> right;
                  }
              }
          }
          return v;
      }
- };
+ };*/
  
 /*//recursion
 class Solution {
@@ -63,3 +68,28 @@ public:
 
 
 //iteration
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> vector;
+        stack<TreeNode *> stack;
+        TreeNode *cur = root;
+        
+        while(!stack.empty() || cur)
+        {
+            if(cur)
+            {
+                stack.push(cur);
+                cur = cur -> left;
+            }
+            else
+            {
+                TreeNode *pNode = stack.top();
+                vector.push_back(pNode->val);
+                stack.pop();
+                cur = pNode->right;
+            }
+        }
+        return vector;
+    }
+};
