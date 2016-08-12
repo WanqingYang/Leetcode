@@ -7,7 +7,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-/* //my code; inorder traversal, when print, count++, return when count == k;
+//my code; inorder traversal, when print, count++, return when count == k;
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
@@ -39,7 +39,7 @@ public:
         }
         return -1;
     }
-};*/
+};
 
 /*//inorder recursion
 class Solution {
@@ -67,7 +67,7 @@ public:
     }
 };*/
 
-//inorder, iteration
+/*//inorder, iteration
 class Solution{
 public:
     int kthSmallest(TreeNode* root, int k){
