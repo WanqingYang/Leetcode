@@ -57,7 +57,9 @@ public:
         //root is not robbed
         int robNoMe = max()
     }*/
-    
+
+//first:root is not robbed
+//second:max situation(rob/not)   
 class Solution {
 public:
     int rob(TreeNode* root) {
@@ -67,8 +69,9 @@ public:
         if( !node) return make_pair(0,0);
         auto l = robDFS(node->left);
         auto r = robDFS(node->right);
-        int f2 = l.second + r.second;
-        int f1 = max(f2, l.first + r.first + node->val);
-        return make_pair(f2, f1);
+        int f1 = l.second + r.second;//root is not robbed
+              // max(不取,取) 这里l.first是left不取，因为此点取了
+        int f2 = max(f1,  l.first + r.first + node->val);//max situation(rob/not)
+        return make_pair(f1, f2);
     }
 };
