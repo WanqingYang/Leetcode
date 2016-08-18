@@ -29,7 +29,7 @@ private:
             serialize(root -> left, out);
             serialize(root -> right, out);
         }else{
-            out << "#";
+            out << "# ";
         }
     }
     
