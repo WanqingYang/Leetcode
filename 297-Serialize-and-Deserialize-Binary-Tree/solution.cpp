@@ -21,8 +21,9 @@ public:
         istringstream in(data);
         return deserialize(in);
     }
+    
 private:
-    void serialize(TreeNode* root, ostringstream &out){
+    void serialize(TreeNode* root, ostringstream& out){
         if(root){
             out << root -> val << ' ';
             serialize(root -> left, out);
@@ -32,7 +33,7 @@ private:
         }
     }
     
-    TreeNode* deserialize(istringstream &in){
+    TreeNode* deserialize(istringstream& in){
         string val;
         in >> val;
         if(val == "#"){return NULL;}
