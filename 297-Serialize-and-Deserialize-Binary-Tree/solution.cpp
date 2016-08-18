@@ -18,7 +18,7 @@ public:
     
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data){
-        istringstream in;
+        istringstream in(data);
         return deserialize(in);
     }
 private:
