@@ -18,7 +18,7 @@ public:
 	            check(board, row - 1, j, row, col);
 	        }
 	    }
-	    
+
 	    for(i = 0; i < row; i++){
 	        for(j = 0; j < col; j++){
 	            board[i][j] = board[i][j] == '1'? 'O' : 'X';
@@ -32,8 +32,8 @@ public:
 	        
 	        if(i > 1){check(board, i - 1, j, row, col);}
 	        if(j > 1){check(board, i, j - 1, row, col);}
-	        if(i < row - 1){check(board, i + 1, j, row, col);}
-	        if(j < col - 1){check(board, i, j + 1, row, col);}
+	        if(i + 1< row){check(board, i + 1, j, row, col);}
+	        if(j + 1< col){check(board, i, j + 1, row, col);}
 	    }
 	}
 };
