@@ -9,13 +9,13 @@ public:
 	    for(i = 0; i < row; i++){
 	        check(i, 0, row, col);
 	        if(col > 1){
-	            check(i, col - 1, row, col);
+	            check(board, i, col - 1, row, col);
 	        }
 	    }
 	    for(j = 0; j < col; j++){
 	        check(0, j, row, col);
 	        if(row > 1){
-	            check(row - 1, j, row, col);
+	            check(board, row - 1, j, row, col);
 	        }
 	    }
 	    
@@ -30,10 +30,10 @@ public:
 	    if(board[i][j] == 'O'){
 	        board[i][j] == '1'
 	        
-	        if(i > 1){check(i - 1, j, row, col);}
-	        if(j > 1){check(i, j - 1, row, col);}
-	        if(i < row - 1){check(i + 1, j, row, col);}
-	        if(j < col - 1){check(i, j + 1, row, col);}
+	        if(i > 1){check(board, i - 1, j, row, col);}
+	        if(j > 1){check(board, i, j - 1, row, col);}
+	        if(i < row - 1){check(board, i + 1, j, row, col);}
+	        if(j < col - 1){check(board, i, j + 1, row, col);}
 	    }
 	}
 };
