@@ -46,7 +46,7 @@ public:
             head = head -> next;
             pre = pre -> next;
         }
-        delete pre -> next;
+        //delete pre -> next;
         pre -> next = pre -> next -> next;
         return dummy.next;
     }
