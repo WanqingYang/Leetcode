@@ -1,6 +1,6 @@
 class Solution {
 public:
-	void solve(vector<vector<char>>& board) {
+	void solve(vector<vector<char>> &board) {
 	    int i, j;
 	    int row = board.size();
 	    if(row == 0){return;}
@@ -26,7 +26,7 @@ public:
 	    }
     }
     
-	void check(vector<vector<char> >&board,int i,int j,int row,int col){
+	void check(vector<vector<char> > &board, int i, int j, int row, int col){
 	    if(board[i][j] == 'O'){
 	        board[i][j] == '1';
 	        
