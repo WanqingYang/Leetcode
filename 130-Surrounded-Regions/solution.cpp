@@ -8,7 +8,7 @@ public:
 	    
 	    for(i = 0; i < row; i++){
 	        check(board, i, 0, row, col);
-	        if(col > 1){
+	        if(col > 1){ // when more than 2 rows it is worth check, or all lines are 
 	            check(board, i, col - 1, row, col);
 	        }
 	    }
@@ -28,7 +28,7 @@ public:
     
 	void check(vector<vector<char>> &board, int i, int j, int row, int col){
 	    if(board[i][j] == 'O'){
-	        board[i][j] == '1';
+	        board[i][j] = '1';
 	        
 	        if(i > 1){check(board, i - 1, j, row, col);}
 	        if(j > 1){check(board, i, j - 1, row, col);}
