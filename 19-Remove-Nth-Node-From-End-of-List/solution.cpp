@@ -46,8 +46,10 @@ public:
             head = head -> next;
             pre = pre -> next;
         }
-        //delete pre -> next;
+        ListNode* temp = pre->next;
         pre -> next = pre -> next -> next;
+        delete temp;
+        
         return dummy.next;
     }
 };
