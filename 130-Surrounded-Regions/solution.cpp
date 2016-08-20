@@ -3,18 +3,18 @@ public:
 	void solve(vector<vector<char>> &board) {
 	    int i, j;
 	    int row = board.size();
-	    if(row == 0){return;}
+	    if(row <= 2){return;}
 	    int col = board[0].size();
 	    
 	    for(i = 0; i < row; i++){
 	        check(board, i, 0, row, col);
-	        if(col > 1){ // when more than 2 rows it is worth check, or all lines are 
+	        if(col > 1){ // when there are 1 or two column, every column is border
 	            check(board, i, col - 1, row, col);
 	        }
 	    }
 	    for(j = 1; j + 1 < col; j++){ // from 1 to col - 1, for 0  and col - 1 already been checked
 	        check(board, 0, j, row, col);
-	        if(row > 1){
+	        if(row > 1){// when there are 1 or two rows, every row is border
 	            check(board, row - 1, j, row, col);
 	        }
 	    }
