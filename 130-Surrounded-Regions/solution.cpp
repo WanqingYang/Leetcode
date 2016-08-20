@@ -7,13 +7,13 @@ public:
 	    int col = board[0].size();
 	    
 	    for(i = 0; i < row; i++){
-	        check(i, 0, row, col);
+	        check(board, i, 0, row, col);
 	        if(col > 1){
 	            check(board, i, col - 1, row, col);
 	        }
 	    }
 	    for(j = 0; j < col; j++){
-	        check(0, j, row, col);
+	        check(board, 0, j, row, col);
 	        if(row > 1){
 	            check(board, row - 1, j, row, col);
 	        }
