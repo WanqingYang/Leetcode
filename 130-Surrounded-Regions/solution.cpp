@@ -5,6 +5,7 @@ public:
 	    int row = board.size();
 	    if(row <= 2){return;}
 	    int col = board[0].size();
+	    if(col <= 2){return;}
 	    
 	    for(i = 0; i < row; i++){
 	        check(board, i, 0, row, col);
