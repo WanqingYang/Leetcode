@@ -12,7 +12,7 @@ public:
 	            check(board, i, col - 1, row, col);
 	        }
 	    }
-	    for(j = 0; j + 1 < col; j++){
+	    for(j = 1; j + 1 < col; j++){ // from 1 to col - 1, for 0  and col - 1 already been checked
 	        check(board, 0, j, row, col);
 	        if(row > 1){
 	            check(board, row - 1, j, row, col);
@@ -26,7 +26,7 @@ public:
 	    }
     }
     
-	void check(vector<vector<char> > &board, int i, int j, int row, int col){
+	void check(vector<vector<char>> &board, int i, int j, int row, int col){
 	    if(board[i][j] == 'O'){
 	        board[i][j] == '1';
 	        
