@@ -12,7 +12,7 @@ public:
 	            check(board, i, col - 1, row, col);
 	        }
 	    }
-	    for(j = 0; j < col; j++){
+	    for(j = 0; j + 1 < col; j++){
 	        check(board, 0, j, row, col);
 	        if(row > 1){
 	            check(board, row - 1, j, row, col);
