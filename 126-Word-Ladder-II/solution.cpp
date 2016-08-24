@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
 public:
     vector<vector<string>> findLadders(string start, string end, unordered_set<string> &dict) {
         m_ladders = vector<vector<string>>();
@@ -55,7 +55,7 @@ private:
     unordered_map<string, int> m_ladderLens;
     int shortestLen;
     vector<vector<string>> m_ladders;    
-}; 
+}; */
 
 /**The solution contains two steps:
  * 1 Use BFS to construct a graph. 
@@ -64,23 +64,33 @@ private:
  *The first step BFS is quite important. I summarized three tricks
  *1. Using a MAP to store the min ladder of each word, or use a SET to store the words visited in current ladder, when the 
  *   current ladder was completed, delete the visited words from unvisited. That's why I have two similar solutions.
- *2. Use Character iteration to find all possible paths. Do not compare one word to all the other words and check if they only
- *   differ by one character.
+ *2. Use Character iteration to find all possible paths. Do not compare one word to all the other words and check if they only differ by one character.
  *3. One word is allowed to be inserted into the queue only ONCE. See my comments.
  **/
  //https://discuss.leetcode.com/topic/2857/share-two-similar-java-solution-that-accpted-by-oj
 
-/*class Solution {
+class Solution {
 private:
-    vector<vector<string>> res();
+    vector<vector<string>> results;
     vector<string> tmp;
     unordered_map<string, vector<string>> myMap;
-    void backTrace(){
-        
+    
+    void backTrace(string endWord, string beginWord, vector<string> &path){
+        if(endWord == beginWord){
+            path.push_back(beginWord);
+            results.push_back(path);
+            path.pop_back();
+            return;
+        }
+        path.push_back(endWord);
+        if(myMap[endWord] != NULL){
+            for(string s:myMap[endWord]){backTrace(s, beginWord, path);}
+        }
+       path.pop_back(); 
     }
 public:
     vector<vector<string>> findLadders(string beginWord, string endWord, unordered_set<string> &wordList) {
-        if(wordList.size() == 0){return res;}
+        if(wordList.size() == 0){return results;}
         int min = INT_MAX;
         queue<string> q;
         q.push(beginWord);// if(beginWord){q.push(beginWord);}
@@ -107,22 +117,23 @@ public:
                         }else if(step < ladder[newWord]{
                             q.push(newWord);
                             ladder[newWord] = step;
-                        }else{  // It is a KEY line. If one word already appeared in one ladder,
+                        }else;  // It is a KEY line. If one word already appeared in one ladder,
 					            // Do not insert the same word inside the queue twice. Otherwise it gets TLE
-                            if(myMap.find(newWord) != myMap.end()){//Build adjacent Graph
-                                myMap[newWord]
-                                myMap[newWord] = 
-                            }else{
-                                
-                            }
+                        if(myMap.find(newWord) != myMap.end()){//Build adjacent Graph
+                            vector<string> tmp = myMap[newWord].push_back(word);
+                            myMap[newWord] = tmp;
+                        }else{
+                            vector<string> list(word); 
+                            myMap[newWord] = list;
                         }
-                        
+                        if(newWord == endWord){min = step;}
                     }
                 }
             } 
         }
-        
-
+        //backtracking
+        vector<string> path;
+        backTrace(endWord, beginWord, path);
+        return results;
     }
-    
 };
