@@ -83,7 +83,7 @@ private:
             return;
         }
         path.push_back(endWord);
-        if(myMap[endWord] != NULL){
+        if(!myMap[endWord].empty()){
             for(string s:myMap[endWord]){backTrace(s, beginWord, path);}
         }
        path.pop_back(); 
