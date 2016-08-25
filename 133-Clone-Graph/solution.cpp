@@ -19,9 +19,9 @@ public:
         if(myMap.find(node) == myMap.end()){//node is not in myMap
             myMap[node] = new UndirectedGraphNode(node -> label); //????
             for(auto x : node -> neighbors){ //for(int i = 0; i < node -> neighbors.size(); i++)
-                (hash[node] -> neighbors).push_back(cloneGraph(x));
+                (myMap[node] -> neighbors).push_back(cloneGraph(x));
             }
         }
-        return hash[node];
+        return myMap[node];
     }
 };
