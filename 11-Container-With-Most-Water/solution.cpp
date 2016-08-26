@@ -22,14 +22,22 @@ public:
         if(_size < 2){return 0;}
         int maxArea = 0;
         int start = 0, end = _size - 1;
-        while(start != end){
-                                  //product of base and height
-            maxArea = max(maxArea, (end - start) * min(height[start], height[end])); 
+        while(start < end){
+            int h = min(height[start], height[end]);
+            maxArea = max(maxArea, (end - start) * h);
+            while(height[start] <= h && start < end){
+                start ++;
+            }
+            while(height[end] <= h && start < end){
+                end --;
+            }
+            //below will be slower, for it evaluate all heights area
+            /*maxArea = max(maxArea, (end - start) * min(height[start], height[end])); 
             if(height[start] < height[end]){
                 start ++;
             }else{
                 end --;
-            }
+            }*/
         }
         return maxArea;
     }
