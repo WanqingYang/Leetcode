@@ -26,7 +26,7 @@ public:
         //int _size = height.size();
         //if(_size < 2){return 0;}
         int maxArea = 0;
-        int start = 0, end = _size - 1;
+        int start = 0, end = height.size() - 1;
         while(start < end){
             int h = min(height[start], height[end]);
             maxArea = max(maxArea, (end - start) * h);
