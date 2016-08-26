@@ -15,11 +15,16 @@ public:
     }
 };*/
 
+/** It starts at evaluate the first and last liner; As the first and last index get closer, the base 
+ * get smaller(the container get less wide),in order to get larger area, the height must get higer,  
+ * skip lines at both ends that don't support a higher height. Then evaluate that new container we 
+ * arrived at. Repeat until there are no more possible containers left.
+ **/ 
 class Solution {
 public:
     int maxArea(vector<int>& height){
         int _size = height.size();
-        if(_size < 2){return 0;}
+        //if(_size < 2){return 0;}
         int maxArea = 0;
         int start = 0, end = _size - 1;
         while(start < end){
