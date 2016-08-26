@@ -27,13 +27,13 @@ public:
     }
 };*/
 
-/*class Solution {
+class Solution {
 public:
     int trap(vector<int>& height){
         int left = 0, right = height.size() - 1;
         int maxLeft = 0, maxRight = 0, result = 0;
         while(left < right){
-            if(height[left] < height[right]){
+            if(height[left] <= height[right]){
                 if(height[left] >= maxLeft){maxLeft = height[left];}
                 else{ result += maxLeft - height[left];}
                 left ++;
@@ -45,8 +45,9 @@ public:
         }
         return result;
     }
-};*/
-class Solution{
+};
+
+/*class Solution{
 public:
   int trap(vector<int>& height) {
     int l = 0, r = height.size()-1, level = 0, water = 0;
