@@ -23,7 +23,7 @@ public:
 class Solution {
 public:
     int maxArea(vector<int>& height){
-        int _size = height.size();
+        //int _size = height.size();
         //if(_size < 2){return 0;}
         int maxArea = 0;
         int start = 0, end = _size - 1;
