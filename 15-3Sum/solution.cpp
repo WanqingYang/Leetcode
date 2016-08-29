@@ -11,7 +11,8 @@ public:
             int front = i + 1;
             int back = n - 1;
             //if(2*nums[front] > target || 2*nums[back] < target){return res;}
-            if(nums[i] > 0 || 2*nums[front] > target){return res;}
+            if(nums[i] > 0 || 2*nums[front] > target){break;}
+            if(nums[n - 2] + nums[n - 1] < target){continue;}
             
             while(front < back){
                 int sum = nums[front] + nums[back];
