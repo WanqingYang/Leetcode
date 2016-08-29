@@ -7,10 +7,10 @@ public:
         if(n < 3 || 3 * nums[0] > 0 || 3 * nums[n - 1] < 0){return res;}
 
         for(int i = 0; i < n - 2; i ++){
+            int target = -nums[i];
             if(nums[i] > 0 || nums[i + 1] + nums[i + 2] > target){break;}
             if(nums[n - 2] + nums[n - 1] < target){continue;}
             
-            int target = -nums[i];
             int front = i + 1;
             int back = n - 1;
 
