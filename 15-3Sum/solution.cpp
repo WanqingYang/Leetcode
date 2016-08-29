@@ -4,6 +4,9 @@ public:
         sort(nums.begin(), nums.end());
         vector<vector<int>> res;
         int n = nums.size();
+        if(n < 3 || 3 * nums[0] > 0 || 3 * nums[n - 1] < 0){
+            return res;
+        }
 
         for(int i = 0; i < n - 2; i ++){
             int target = -nums[i];
