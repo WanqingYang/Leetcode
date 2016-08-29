@@ -40,13 +40,14 @@ public:
                  pair<int, int> rPair = make_pair(i + 1, end);
                  if(dp.find(lPair) != dp.end()){//if already stored in dp
                      vector<TreeNode*> *leftSubs = dp[lPair];
+                 }else{
+                     vector<TreeNode*> *leftSubs = generate(start, i-1);
                  }
                  if(dp.find(rPair) != dp.end()){//if already stored in dp
                      vector<TreeNode*> *rightSubs = dp[rPair];
+                 }else{
+                     vector<TreeNode*> *rightSubs = generate(i+1, end);
                  }
-                 
-                 vector<TreeNode*> *leftSubs = generate(start, i-1);
-                 vector<TreeNode*> *rightSubs = generate(i+1, end);
                  
                  if(dp.find(lPair) == dp.end()){//if never stored in dp
                      dp[lPair] = leftSubs;
