@@ -21,17 +21,12 @@ public:
                 }else if(sum > target){
                     back --;
                 }else{//  sum == target
-                    vector<int> path (3, 0);
-                    path[0] = nums[i];
-                    path[1] = nums[front];
-                    path[2] = nums[back];
-                    res.push_back(path);
+                    res.push_back(vector<int>{nums[i], nums[front], nums[back]});
                     //processing duplicates of Number 2
                     //move the front pointer to the next different number forward
-                    while(front < back && nums[front] == path[1]){front ++;}
+                    do{front ++;}while(front < back && nums[front] == nums[front - 1]);
                     //processing duplicates of Number 3
-                    //move the back pointer to the next different number backward
-                    while(front < back && nums[back] == path[2]){back --;}
+                    do{back --;}while(front < back && nums[back] == nums[back + 1]);
                 }
             }
             //processing duplicates of Number 1,move the pointer to the next different number forward
