@@ -11,6 +11,7 @@
  //http://fisherlei.blogspot.com/search/label/%E4%BA%8C%E5%8F%89%E6%A0%91
 class Solution {
 private:
+    template <>
     struct hash<pair<int, int>>{
 	    size_t operator() (const pair<int, int> &p) const{
 	        return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
