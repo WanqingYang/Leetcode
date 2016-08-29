@@ -38,17 +38,18 @@ public:
         sort(nums.begin(), nums.end());
         vector<vector<int>> res;
         int n = nums.size();
-        if(n < 4 || nums[0] * 4 > target || nums[n - 1] * 4 < target){return res;}
+        if(n < 4 || nums[0] + nums[1] + nums[2] + nums[3] > target || 
+        nums[n - 1] + nums[n - 2] + nums[n - 3] + nums[n - 4] < target){return res;}
         
         for(int i = 0; i < n - 3; i ++){
             int threeSum = target - nums[i];
-            if(i > 0 && nums[i] == nums[i - 1]){continue;}
+            //if(i > 0 && nums[i] == nums[i - 1]){continue;}
             if(nums[i+1] + nums[i+2] + nums[i+3] > threeSum){break;}
             if(nums[n-3] + nums[n-2] + nums[n-1] < threeSum){continue;}
             
             for(int j = i + 1; j < n - 2; j ++){
                 int twoSum = threeSum - nums[j];
-                if(j > i + 1 && nums[j] == nums[j - 1]){continue;}
+                //if(j > i + 1 && nums[j] == nums[j - 1]){continue;}
                 if(nums[j+1] + nums[j+2] > twoSum){break;}
                 if(nums[n-2] + nums[n-1] < twoSum){continue;}
                 int front = j + 1;
@@ -67,9 +68,9 @@ public:
                         do{back--;}while(front < back && nums[back] == nums[back + 1]);
                     }
                 }
-               // while(j + 1 < n - 2 && nums[j + 1] == nums[j]){j ++;}
+                while(j + 1 < n - 2 && nums[j + 1] == nums[j]){j ++;}
             }
-            //while(i + 1 < n - 3 && nums[i + 1] == nums[i]){i ++;}
+            while(i + 1 < n - 3 && nums[i + 1] == nums[i]){i ++;}
         }
         return res;
     }
