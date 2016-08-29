@@ -33,9 +33,8 @@ public:
                     while(front < back && nums[back] == path[2]){back --;}
                 }
             }
-            //processing duplicates of Number 1
-            //move the i pointer to the next different number forward
-            while(i + 1 < n && nums[i] == nums[i + 1]){ i ++;}
+            //processing duplicates of Number 1,move the pointer to the next different number forward
+            while(i + 1 < n - 2 && nums[i] == nums[i + 1]){ i ++;}
         }
         return res;
     }
