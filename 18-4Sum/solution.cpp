@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         vector<vector<int>> total;
@@ -30,9 +30,9 @@ public:
         }
         return total;
     }
-};
+};*/
 
-/*class Solution {
+class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         sort(nums.begin(), nums.end());
@@ -42,11 +42,15 @@ public:
         
         for(int i = 0; i < n - 3; i ++){
             int threeSum = target - nums[i];
-            if(3 * nums[i + 1] > threeSum){return res;}
+            if(i > 0 && nums[i] == nums[i - 1]){continue;}
+            if(nums[i+1] + nums[i+2] + nums[i+3] > threeSum){break;}
+            if(nums[n-3] + nums[n-2] + nums[n-1] < threeSum){continue;}
             
             for(int j = i + 1; j < n - 2; j ++){
                 int twoSum = threeSum - nums[j];
-                if(2 * nums[j + 1] > twoSum){return res;}//think about if more
+                if(j > i + 1 && nums[j] == nums[j - 1]){continue;}
+                if(nums[j+1] + nums[j+2] > twoSum){break;}
+                if(nums[n-2] + nums[n-1] < twoSum){continue;}
                 int front = j + 1;
                 int back = n - 1;
                 
@@ -57,18 +61,15 @@ public:
                     }else if(sum > twoSum){
                         back --;
                     }else{
-                        vector<int> quadruplet (4, 0);
-                        quadruplet[0] = nums[i], quadruplet[1] = nums[j];
-                        quadruplet[2] = nums[front], quadruplet[3] = nums[back];
-                        res.push_back(quadruplet);
+                        res.push_back(vector<int>{nums[i],nums[j],nums[front],nums[back]});
                         
-                        while(front < back && nums[front] == quadruplet[2]){front++;}
-                        while(front < back && nums[back] == quadruplet[3]){back--;}
+                        do{front++;}while(front < back && nums[front] == nums[front - 1]);
+                        do{back--;}while(front < back && nums[back] == nums[back + 1]);
                     }
                 }
-                while(j + 1 < n - 2 && nums[j + 1] == nums[j]){j ++;}
+               // while(j + 1 < n - 2 && nums[j + 1] == nums[j]){j ++;}
             }
-            while(i + 1 < n - 3 && nums[i + 1] == nums[i]){i ++;}
+            //while(i + 1 < n - 3 && nums[i + 1] == nums[i]){i ++;}
         }
         return res;
     }
