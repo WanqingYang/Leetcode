@@ -5,7 +5,7 @@ public:
         vector<vector<int>> res;
         int n = nums.size();
 
-        for(int i = 0; i < n; i ++){
+        for(int i = 0; i < n - 2; i ++){
             int target = -nums[i];
             int front = i + 1;
             int back = n - 1;
