@@ -17,7 +17,7 @@ public:
                 if(curSum == target){return curSum;}
                 if(abs(target - curSum) < abs(target - closest)){closest = curSum;}
                 if(curSum < target){second++;}
-                else{third++;} //curSum > target
+                else{third--;} //curSum > target
             }
         }
         return closest;
