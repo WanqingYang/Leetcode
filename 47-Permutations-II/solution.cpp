@@ -1,5 +1,32 @@
 class Solution {
 public:
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        vector<vector<int> > res;
+        vector<int> out;
+        vector<int> visited(num.size(), 0);
+        sort(num.begin(), num.end());
+        permuteUniqueDFS(num, 0, visited, out, res);
+        return res;
+    }
+    void permuteUniqueDFS(vector<int> &num, int level, vector<int> &visited, vector<int> &out, vector<vector<int> > &res) {
+        if (level >= num.size()) res.push_back(out);
+        else {
+            for (int i = 0; i < num.size(); ++i) {
+                if (visited[i] == 0) {
+                    if (i > 0 && num[i] == num[i - 1] && visited[i - 1] == 0) continue;
+                    visited[i] = 1;
+                    out.push_back(num[i]);
+                    permuteUniqueDFS(num, level + 1, visited, out, res);
+                    out.pop_back();
+                    visited[i] = 0;
+                }
+            }
+        }
+    }
+};
+
+/*class Solution {
+public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         set<vector<int>> res;
         permute(nums, 0, res);
