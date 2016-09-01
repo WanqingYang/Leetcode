@@ -7,7 +7,7 @@ public:
     }
     
     void permuteRecursion(vector<int> &nums, int begin, vector<vector<int>> &res){
-        if(begin == nums.size()){ // ?? why need >= 
+        if(begin == nums.size()){
             res.push_back(nums);
             return;
         }
