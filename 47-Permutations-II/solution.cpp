@@ -3,6 +3,33 @@ public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> tmp;
+        permuteRecursion(nums, 0, res);
+        return res;
+    }
+    
+    void permuteRecursion(vector<int> &nums, int begin, vector<vector<int>> &res){
+        if(begin == nums.size()){
+            res.push_back(nums);
+            return;
+        }
+       
+        unordered_set<int> mySet;
+        for(int i = begin; i < nums.size(); i++){
+            if(mySet.find(nums[i]) == mySet.end()){
+                mySet.insert(nums[i]);
+                swap(nums[begin], nums[i]);
+                permuteRecursion(nums, begin + 1, res);
+                swap(nums[begin], nums[i]);// reset, backtracking
+            }
+        }
+    }
+};
+
+/*class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> tmp;
         permuteRecursion(nums, 0, tmp, res);
         return res;
     }
