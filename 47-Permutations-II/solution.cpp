@@ -1,33 +1,32 @@
 class Solution {
 public:
-    vector<vector<int> > permuteUnique(vector<int> &num) {
-        vector<vector<int> > res;
-        if(num.size() == 0)return res;
-        vector<int> tmpres;
-        permuteRecur(num, 0, res, tmpres);
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> tmp;
+        permuteRecursion(nums, 0, tmp, res);
         return res;
     }
-     
-    void permuteRecur(vector<int> &num, int index, vector<vector<int> >&res, vector<int>&tmpres)
-    {
-        if(index == num.size())
-        {
-            res.push_back(tmpres);
+    
+    void permuteRecursion(vector<int> &nums, int begin, vector<int> &tmp, vector<vector<int>> &res){
+        if(begin == nums.size()){
+            res.push_back(tmp);
             return;
         }
-        unordered_set<int> umap;
-        for(int i = index; i < num.size(); i++)
-            if(umap.find(num[i]) == umap.end())
-            {
-                umap.insert(num[i]);
-                swap(num[index], num[i]);
-                tmpres.push_back(num[index]);
-                permuteRecur(num, index+1, res, tmpres);
-                tmpres.pop_back();
-                swap(num[index], num[i]);
+       
+        unordered_set<int> mySet;
+        for(int i = begin; i < nums.size(); i++){
+            if(mySet.find(nums[i]) == mySet.end()){
+                mySet.insert(nums[i]);
+                swap(nums[begin], nums[i]);
+                tmp.push_back(nums[begin]);
+                permuteRecursion(nums, begin + 1, tmp, res);
+                tmp.pop_back();
+                swap(nums[begin], nums[i]);// reset, backtracking
             }
+        }
     }
 };
+
 /*class Solution {
 public:
     vector<vector<int> > permuteUnique(vector<int> &num) {
@@ -69,34 +68,6 @@ public:
             swap(nums[i], nums[start]);
             permute(nums, start + 1, res);
             swap(nums[i], nums[start]);
-        }
-    }
-};
-/*class Solution {
-public:
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        vector<vector<int>> res;
-        vector<int> tmp;
-        permuteRecursion(nums, 0, tmp, res);
-        return res;
-    }
-    
-    void permuteRecursion(vector<int> &nums, int begin, vector<int> &tmp, vector<vector<int>> &res){
-        if(begin == nums.size()){
-            res.push_back(tmp);
-            return;
-        }
-       
-        unordered_set<int> mySet;
-        for(int i = begin; i < nums.size(); i++){
-            if(mySet.find(i) == mySet.end()){
-                mySet.insert(nums[i]);
-                swap(nums[begin], nums[i]);
-                tmp.push_back(nums[begin]);
-                permuteRecursion(nums, begin + 1, tmp, res);
-                tmp.pop_back();
-                swap(nums[begin], nums[i]);// reset, backtracking
-            }
         }
     }
 };
