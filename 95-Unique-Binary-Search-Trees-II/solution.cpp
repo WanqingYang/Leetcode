@@ -11,13 +11,12 @@
  //http://fisherlei.blogspot.com/search/label/%E4%BA%8C%E5%8F%89%E6%A0%91
 class Solution {
 private:
-    template <>
-    struct hash<pair<int, int>>{
+    struct pairhash{
 	    size_t operator() (const pair<int, int> &p) const{
 	        return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
 	    }
     };
-    unordered_map<pair<int, int>, vector<TreeNode*>*> dp;
+    unordered_map<pair<int, int>, vector<TreeNode*>*, pairhash> dp;
 public:
         vector<TreeNode *> generateTrees(int n) {   
            if(n == 0){
@@ -39,15 +38,19 @@ public:
             {
                  pair<int, int> lPair = make_pair(start, i - 1);
                  pair<int, int> rPair = make_pair(i + 1, end);
+                 
+                 vector<TreeNode*> *leftSubs;
                  if(dp.find(lPair) != dp.end()){//if already stored in dp
-                     vector<TreeNode*> *leftSubs = dp[lPair];
+                     leftSubs = dp[lPair];
                  }else{
-                     vector<TreeNode*> *leftSubs = generate(start, i-1);
+                     leftSubs = generate(start, i-1);
                  }
+                 
+                 vector<TreeNode*> *rightSubs;
                  if(dp.find(rPair) != dp.end()){//if already stored in dp
-                     vector<TreeNode*> *rightSubs = dp[rPair];
+                     rightSubs = dp[rPair];
                  }else{
-                     vector<TreeNode*> *rightSubs = generate(i+1, end);
+                     rightSubs = generate(i+1, end);
                  }
                  
                  if(dp.find(lPair) == dp.end()){//if never stored in dp
