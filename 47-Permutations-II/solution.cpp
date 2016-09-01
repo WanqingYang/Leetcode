@@ -2,6 +2,36 @@ class Solution {
 public:
     vector<vector<int> > permuteUnique(vector<int> &num) {
         vector<vector<int> > res;
+        if(num.size() == 0)return res;
+        vector<int> tmpres;
+        permuteRecur(num, 0, res, tmpres);
+        return res;
+    }
+     
+    void permuteRecur(vector<int> &num, int index, vector<vector<int> >&res, vector<int>&tmpres)
+    {
+        if(index == num.size())
+        {
+            res.push_back(tmpres);
+            return;
+        }
+        unordered_set<int> umap;
+        for(int i = index; i < num.size(); i++)
+            if(umap.find(num[i]) == umap.end())
+            {
+                umap.insert(num[i]);
+                swap(num[index], num[i]);
+                tmpres.push_back(num[index]);
+                permuteRecur(num, index+1, res, tmpres);
+                tmpres.pop_back();
+                swap(num[index], num[i]);
+            }
+    }
+};
+/*class Solution {
+public:
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        vector<vector<int> > res;
         vector<int> out;
         vector<int> visited(num.size(), 0);
         sort(num.begin(), num.end());
