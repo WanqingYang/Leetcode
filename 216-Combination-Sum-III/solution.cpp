@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
-        if(n == 0){return res;}
+        //if(n == 0){return res;}
         path.resize(k);
         combineSumFinder3(k, n, 1);
         return res;
