@@ -1,3 +1,4 @@
+//no repeated numbers in candidates?
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -15,10 +16,17 @@ private:
             res.push_back(path);
             return;
         }
+        
+        unordered_set<int> mySet;
         for(int i = begin; i < candidates.size() && target >= candidates[i]; i++){
-            path.push_back(candidates[i]);
-            combineSumFinder(candidates, target - candidates[i], i, path, res);
-            path.pop_back();
+            if(mySet.find(candidates[i]) == mySet.end()){
+                path.push_back(candidates[i]);
+                mySet.insert(candidates[i]);
+                combineSumFinder(candidates, target - candidates[i], i, path, res);
+                path.pop_back();
+            }else{
+                continue;
+            }
         }
     }
 };
