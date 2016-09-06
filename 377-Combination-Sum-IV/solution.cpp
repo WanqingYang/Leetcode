@@ -1,19 +1,21 @@
 class Solution {
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        vector<int> dp(target + 1);
-        dp[0] = 1;
-        sort(nums.begin(), nums.end());
+        vector<int> res(target + 1);
+        res[0] = 1;
+        //sort(nums.begin(), nums.end());
         for (int i = 1; i <= target; i++) {
-            for (auto num : nums) {
-                if (i < num) break;
-                dp[i] += dp[i - num];
+            for (auto x : nums) {
+                if (i >= x){
+                    res[i] += res[i - x];
+                }
             }
         }
-        return dp.back();
+        return res[target];
     }
 };
 
+//mycode, time limit exceed
 /*class Solution {
 public:
     int combinationSum4(vector<int>& nums, int target) {
@@ -22,9 +24,11 @@ public:
         return res.size();
     }
     
-    int combinationSum4(vector<int>& nums, int target) {
-        sort(nums.begin(), nums.end());
-        vector<vector<int>> res;
+private:
+    vector<int> path;
+    vector<vector<int>> res;
+    
+    int combineSumFinder4(vector<int>& nums, int target) {
         
         if(target == 0){
             res.push_back(path);
@@ -33,14 +37,10 @@ public:
         
         for(int i = 0; i < nums.size() && target >= nums[i]; i++){
             path.push_back(nums[i]);
-            combinationSum4(nums, target - nums[i]);
+            combineSumFinder4(nums, target - nums[i]);
             path.pop_back();
         }
-    }    
-    
-private:
-    vector<int> path;
-    vector<vector<int>> res;
+    }        
     
 
 };
