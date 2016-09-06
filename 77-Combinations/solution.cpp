@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
 public:
     vector<vector<int> > combine(int n, int k) {
         v.resize(k);
@@ -17,29 +17,30 @@ private:
                 r.push_back(v);
         }
     }
-};
+};*/
 
-/*class Solution {
+class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
-        vector<int> path;
-        vector<vector<int>> res;
-        combineFinder(n, k, 1, path, res);
+        path.resize(k);
+        combineFinder(n, k, 1);
         return res;
     }
+
+private:
+    vector<int> path;
+    vector<vector<int>> res;
     
-    void combineFinder(int n, int k, int begin, vector<int> &path, vector<vector<int>> &res){
+    void combineFinder(int n, int k, int begin){
         if(k == 0){
             res.push_back(path);
             return;
         }
         
         for(int i = begin; i <= n; i++){
-            path.push_back(i);
-            k--;
-            combineFinder(n, k, i + 1, path, res);
-            path.pop_back();
-            k++;
+            path[path.size() - k] = i; //avoid push_back
+            combineFinder(n, k - 1, i + 1);
+            //path.pop_back();
         }
     }
 };
