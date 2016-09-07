@@ -1,6 +1,26 @@
 class Solution {
 public:
     bool isValid(string s) {
+        stack<char> paren;
+        for (char& c : s) {
+            switch (c) {
+                case '(': 
+                case '{': 
+                case '[': paren.push(c); break;
+                case ')': if (paren.empty() || paren.top()!='(') return false; else paren.pop(); break;
+                case '}': if (paren.empty() || paren.top()!='{') return false; else paren.pop(); break;
+                case ']': if (paren.empty() || paren.top()!='[') return false; else paren.pop(); break;
+                default: ; // pass
+            }
+        }
+        return paren.empty() ;
+    }
+};
+
+/*//use stack to store parenthesis, when traverse string, if parenthesis is a pair, pop it
+class Solution {
+public:
+    bool isValid(string s) {
         if(s.empty()){return true;}
         if(s.size() == 1){return false;}
         
@@ -20,8 +40,7 @@ public:
                 else{return false;}
             }
         }
-        if(!check.empty()){return false;}
-        return true;
+        return check.empty();
     }
     
 private:
