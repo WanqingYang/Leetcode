@@ -13,8 +13,8 @@ public:
             if(left != -1){//paren is left
                 check.push(s[i]);
             }else{// paren is right
-                int right = isRight(s[i]);
                 if(check.empty()){return false;}
+                int right = isRight(s[i]);
                 int topLeft = isLeft(check.top());
                 if(right == topLeft){check.pop();}
                 else{return false;}
