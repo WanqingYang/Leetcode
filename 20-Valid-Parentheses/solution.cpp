@@ -14,6 +14,7 @@ public:
                 check.push(s[i]);
             }else{// paren is right
                 int right = isRight(s[i]);
+                if(check.empty()){return false;}
                 int topLeft = isLeft(check.top());
                 if(right == topLeft){check.pop();}
                 else{return false;}
