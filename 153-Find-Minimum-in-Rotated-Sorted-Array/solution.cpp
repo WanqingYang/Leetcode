@@ -9,19 +9,20 @@ public:
         int start = 0;
         int end = nums.size() - 1;
         
-        while(start  < end){
+        while(start + 1 < end){
             /*if(nums[start] <= nums[end]){//????
                 return nums[start];
             }*/
             
             int mid = start + (end - start)/2;
             if(nums[mid] >= nums[end]){
-                start = mid + 1;//must not in the index from start to mid
+                start = mid;//must not in the index from start to mid
             }else{
                 end = mid;
             }
         }
+        return nums[start] <= nums[end]? nums[start] : nums[end];
 
-        return nums[start];
+        //return nums[start];
     }
 };
