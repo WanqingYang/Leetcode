@@ -1,5 +1,34 @@
 class Solution {
 public:
+    int searchInsert(vector<int> &nums, int target) {
+        // find first position >= target
+        if (nums.size() == 0) {
+            return 0;
+        }
+        
+        int start = 0, end = nums.size() - 1;
+        while (start + 1 < end) {
+            int mid = (end - start) / 2 + start;
+            if (nums[mid] >= target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        
+        if (nums[start] >= target) {
+            return start;
+        }
+        if (nums[end] >= target) {
+            return end;
+        }
+        
+        return nums.size();
+    }
+};
+
+/*class Solution {
+public:
     int searchInsert(vector<int>& nums, int target) {
         int start = 0, end = nums.size(), mid;
         while (start < end) {
