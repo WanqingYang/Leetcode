@@ -50,10 +50,10 @@ class SummaryRanges {
 public:
     /** Initialize your data structure here. */
     void addNum(int val) {
-        auto it = st.lower_bound(Interval(val, val));
+        auto it = st.lower_bound(Interval(val, val)); //know where the val's index is, in the st
         int start = val, end = val;
-        if(it != st.begin() && (--it)->end+1 < val) it++;
-        while(it != st.end() && val+1 >= it->start && val-1 <= it->end)
+        if(it != st.begin() && (--it)->end+1 < val) {it++;} //it is neither the first nor???????
+        while(it != st.end() && val+1 >= it->start && val-1 <= it->end)// not the last, and val is in the
         {
             start = min(start, it->start);
             end = max(end, it->end);
@@ -71,7 +71,7 @@ private:
     struct Cmp{
         bool operator()(Interval a, Interval b){ return a.start < b.start; }
     };
-    set<Interval, Cmp> st;
+    set<Interval, Cmp> st;//pass interval and functor, tell us the sorting method
 };
 
 /**
