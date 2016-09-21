@@ -6,6 +6,9 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+ 
+ /**Similar with Merge two sorted list
+  **/
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
@@ -34,8 +37,9 @@ public:
             }
             l3 = l3 -> next;
         }
-        if(l1){l3 -> next = l1;}
-        else{l3 -> next = l2;}
+        /*if(l1){l3 -> next = l1;}
+        else{l3 -> next = l2;}*/
+        l3->next = l1? l1: l2;
         return dummy.next;
     }
 };
