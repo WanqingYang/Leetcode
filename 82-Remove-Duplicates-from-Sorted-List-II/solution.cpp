@@ -6,7 +6,8 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-//second time, iteration, how to deal with memory leak
+//second time, iteration, dealt with memory leak
+//when has duplicate, jump out of while, need another delete, for no duplicates val at all in list
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
@@ -18,9 +19,7 @@ public:
         ListNode *cur = head;
         pre->next = head;
         
-        //while(cur->next != NULL) {
-        while(cur != NULL) { //????
-            //cur = cur->next;
+        while(cur != NULL) {
             if(cur->next != NULL && cur->next->val == cur->val) {
                 while(cur->next != NULL && cur->next->val == cur->val) {
                     ListNode* tmp = cur->next;
@@ -28,7 +27,7 @@ public:
                     cur = tmp;
                     pre->next = cur;
                 }
-                ListNode* tmp = cur->next;
+                tmp = cur->next;
                 delete cur;
                 cur = tmp;
                 pre->next = cur;
@@ -36,12 +35,6 @@ public:
                 cur = cur->next;
                 pre = pre->next;
             }
-            /*if(pre->next == cur) {
-                pre = pre->next;
-            } else {
-                pre->next = cur->next;
-                //pre = pre->next;
-            }*/
         }
         return dummy.next;
     }
