@@ -7,7 +7,14 @@
  * };
  */
 //priority_queue
+//由于priority queue的大小为始终为k，而每次插入的复杂度是log k，一共插入过nk个节点。
+//时间复杂度为O(nlogk)，空间复杂度为O(k)。
 class Solution {
+    struct cmp {
+        bool operator()(ListNode *left, ListNode *right) {
+            return left->val > right->val;
+        }
+    };
 public:
     /**
      * @param lists: a list of ListNode
@@ -16,21 +23,19 @@ public:
     ListNode *mergeKLists(vector<ListNode *> &lists) {
         if(lists.empty()) {return NULL;}
         
-        priority_queue<ListNode *> pq;
+        priority_queue<ListNode *, vector<ListNode *>, cmp> pq;
         for(int i = 0; i < lists.size(); i++) {
-            if(lists[i] != NULL) {
-                pq.push(lists[i]);
-            }
+            if(lists[i] != NULL) {pq.push(lists[i]);}
         }
         
         ListNode dummy(0);
         ListNode* cur = &dummy;
         while(!pq.empty()) {
-            ListNode *head = pq.top();
-            cur->next = head;
-            cur = head;
-            if(head->next != NULL) {
-                pq.push(head->next);
+            cur->next = pq.top();
+            cur = cur->next; //do not forget
+            pq.pop();
+            if(cur->next != NULL) {
+                pq.push(cur->next);
             }
         }
         return dummy.next;
