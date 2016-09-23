@@ -19,17 +19,29 @@ public:
         pre->next = head;
         
         //while(cur->next != NULL) {
-        while(cur != NULL) {
-            while(cur->next != NULL && cur->next->val == cur->val) {
+        while(cur != NULL) { //????
+            //cur = cur->next;
+            if(cur->next != NULL && cur->next->val == cur->val) {
+                while(cur->next != NULL && cur->next->val == cur->val) {
+                    ListNode* tmp = cur->next;
+                    delete cur;
+                    cur = tmp;
+                    pre->next = cur;
+                }
+                ListNode* tmp = cur->next;
+                delete cur;
+                cur = tmp;
+                pre->next = cur;
+            } else{
                 cur = cur->next;
+                pre = pre->next;
             }
-            if(pre->next == cur) {
+            /*if(pre->next == cur) {
                 pre = pre->next;
             } else {
                 pre->next = cur->next;
                 //pre = pre->next;
-            }
-            cur = cur->next;
+            }*/
         }
         return dummy.next;
     }
