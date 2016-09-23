@@ -1,4 +1,5 @@
-/*class Solution {
+//i = 4, makes the progress faster
+class Solution {
 public:
     bool isUgly(int num) {
         for(int i = 2; i < 6; i++) {
@@ -8,9 +9,9 @@ public:
         }
         return num == 1;
     }
-};*/
+};
 
-class Solution {
+/*class Solution {
 public:
     bool isUgly(int num) {
         if(num <= 0) {return false;}
