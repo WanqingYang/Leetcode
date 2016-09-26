@@ -7,7 +7,9 @@ public:
         vector<int> result(1,1);
         int i = 0, j = 0, k = 0;
         while(result.size() < n) {
-            result.push_back(min(result[i] * 2, result[j] * 3, result[k] * 5));
+            //result.push_back(min(result[i] * 2, min(result[j] * 3, result[k] * 5)));
+            //notice that min(a,b) function can only take two parameters
+            result.push_back(min(result[i] * 2, min(result[j] * 3, result[k] * 5)));
             if(result[i] * 2 == result.back()) {i++;}
             if(result[j] * 3 == result.back()) {j++;}
             if(result[k] * 5 == result.back()) {k++;}
