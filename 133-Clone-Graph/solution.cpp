@@ -24,7 +24,7 @@ public:
             new_node->neighbors[i] = cloneGraph(node->neighbors[i]);
         }
         
-        return track[node];
+        return new_node;
     }
 };
 
