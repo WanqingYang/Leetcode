@@ -8,7 +8,7 @@ public:
         right.insert(endWord);
         
         unordered_set<string> tmp;
-        ladder = 1;
+        int ladder = 1;
         while(!left.empty() && !right.empty()) {
             if(left.size() < right.size()) {
                 pleft = &left;
