@@ -22,10 +22,21 @@ public:
                 string word = *it; //????
                 wordDict.erase(word);
                 
-                //if(pright->find(word) != pright->end()) {return ladder;}
-                if(findNextWord(word, wordDict, tmp, ladder, pright)) {
-                    return ladder;
+                for(int i = 0; i < word.size(); i++) {
+                    char origin = word[i];
+                    for(int j = 0; j < 26; j++) {
+                        word[i] = 'a' + j;
+                        if(pright->find(word) != pright->end()) {return ladder;}
+                        if(wordDict.find(word) != wordDict.end()) {
+                            tmp.insert(word);
+                            wordDict.erase(word);
+                        }
+                    }
+                    word[i] = origin;
                 }
+                /*if(findNextWord(word, wordDict, tmp, ladder, pright)) {
+                    return ladder;
+                }*/
             }
             ladder++;
             swap(*pleft, tmp);
@@ -33,7 +44,7 @@ public:
         return 0;
     }
     
-private:    
+/*private:    
     bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder,
     unordered_map<string> *pright) {
         wordDict.erase(word);
@@ -55,7 +66,7 @@ private:
         }
     }
     return false;
-};
+};*/
 
 
 /**The idea is simpy to begin from start, then visit its neighbors, then the non-visited neighbors of its neighbors... Well, this is just the typical BFS structure.
