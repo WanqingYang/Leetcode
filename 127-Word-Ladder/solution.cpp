@@ -26,7 +26,7 @@ public:
     
 private:    
     void findNextWord(string word, unordered_set<string>& wordDict, queue<string> &toVisit) {
-        for(int i = 0; i < beginWord.size(); i++) {
+        for(int i = 0; i < word.size(); i++) {
             char orgin = word[i];
             for(int j = 0; i < 26; j++) {
                 word[i] = 'a' + j;
