@@ -9,7 +9,7 @@ public:
         //if(beginWord == endWord)??
         int ladder = 2;
         queue<string> toVisit;
-        findNextWord(beginWord, endWord, wordDict, toVisit);
+        findNextWord(beginWord, wordDict, toVisit);
         
         while(!toVisit.empty()) {
             string word = toVisit.front();
