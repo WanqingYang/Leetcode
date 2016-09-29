@@ -24,7 +24,7 @@ public:
         
         while(!toVisit.empty()) {
             int _size = toVisit.size();
-            for(int i = 0; i < _size(); i++) {
+            for(int i = 0; i < _size; i++) {
                 string word = toVisit.front();
                 toVisit.pop();
                 if(word == endWord) {return ladder;}
