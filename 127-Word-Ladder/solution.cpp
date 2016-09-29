@@ -16,16 +16,17 @@ public:
             toVisit.pop();
             ladder++;
             if(word == endWord) {return ladder;}
-            if(wordDict.find(word) != wordDict.end()) {
-                wordDict.erase(word);
-                findNextWord(word, wordDict, toVisit);
-            }
+            //if(wordDict.find(word) != wordDict.end()) {
+            wordDict.erase(word);
+            findNextWord(word, wordDict, toVisit);
+            //}
         }
         return 0;
     }
     
 private:    
     void findNextWord(string word, unordered_set<string>& wordDict, queue<string> &toVisit) {
+        wordDict.erase(word);
         for(int i = 0; i < word.size(); i++) {
             char origin = word[i];
             for(int j = 0; i < 26; j++) {
