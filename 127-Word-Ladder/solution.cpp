@@ -31,6 +31,7 @@ public:
                 //wordDict.erase(word);
                 findNextWord(word, wordDict, toVisit);
             }
+            ladder++;
         }
         return 0;
     }
@@ -44,6 +45,7 @@ private:
                 word[i] = 'a' + j;
                 if(wordDict.find(word) != wordDict.end()) {
                     toVisit.push(word);
+                    wordDict.erase(word);
                 }
             }
             word[i] = origin;
