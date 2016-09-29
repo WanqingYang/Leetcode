@@ -18,10 +18,12 @@ public:
                 pright = &left;
             }
             
-            for(auto it = *pleft.begin(); it != *pleft.end(); it++) {
-                string word = *pleft[*it];
-                if(*pright.find(word) != *pright.end()) {return ladder;}
-                if(wordDict.find())
+            for(auto it = pleft->begin(); it != pleft->end(); it++) {
+                string word = *it; //????
+                wordDict.erase(word);
+                
+                if(pright->find(word) != pright->end()) {return ladder;}
+                //if(wordDict.find())
                 
                 findNextWord(word, wordDict, tmp);
             }
