@@ -6,49 +6,13 @@ To simplify the problem, we insert end into dict. Once we meet end during the BF
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, unordered_set<string>& wordDict) {
-        wordDict.insert(endWord);
-        queue<string> toVisit;
-        addNextWords(beginWord, wordDict, toVisit);
-        int dist = 2;
-        while (!toVisit.empty()) {
-            int num = toVisit.size();
-            for (int i = 0; i < num; i++) {
-                string word = toVisit.front();
-                toVisit.pop();
-                if (word == endWord) return dist;
-                addNextWords(word, wordDict, toVisit);
-            }
-            dist++;
-        }
-        return 0;
-    }
-private:
-    void addNextWords(string word, unordered_set<string>& wordDict, queue<string>& toVisit) {
-        wordDict.erase(word);
-        for (int p = 0; p < (int)word.length(); p++) {
-            char letter = word[p];
-            for (int k = 0; k < 26; k++) { 
-                word[p] = 'a' + k;
-                if (wordDict.find(word) != wordDict.end()) {
-                    toVisit.push(word);
-                    wordDict.erase(word);
-                }
-            }
-            word[p] = letter;
-        } 
-    } 
-};
-
-/*class Solution {
-public:
-    int ladderLength(string beginWord, string endWord, unordered_set<string>& wordDict) {
         //if(beginWord == endWord)??
         wordDict.insert(endWord); //dont forget!!!
-        int ladder = 2;
         queue<string> toVisit;
         findNextWord(beginWord, wordDict, toVisit);
         
-       /* while(!toVisit.empty()) {
+        int ladder = 2;
+        /*while(!toVisit.empty()) {
             string word = toVisit.front();
             toVisit.pop();
             ladder++;
@@ -59,7 +23,7 @@ public:
             //}
         }*/
         
-       /* while(!toVisit.empty()) {
+        while(!toVisit.empty()) {
             int _size = toVisit.size();
             for(int i = 0; i < _size; i++) {
                 string word = toVisit.front();
@@ -78,7 +42,7 @@ private:
         wordDict.erase(word);
         for(int i = 0; i < word.size(); i++) {
             char origin = word[i];
-            for(int j = 0; i < 26; j++) {
+            for(int j = 0; j < 26; j++) {
                 word[i] = 'a' + j;
                 if(wordDict.find(word) != wordDict.end()) {
                     toVisit.push(word);
