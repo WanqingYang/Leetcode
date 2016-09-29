@@ -7,6 +7,7 @@ class Solution {
 public:
     int ladderLength(string beginWord, string endWord, unordered_set<string>& wordDict) {
         //if(beginWord == endWord)??
+        wordDict.insert(endWord); //dont forget!!!
         int ladder = 2;
         queue<string> toVisit;
         findNextWord(beginWord, wordDict, toVisit);
