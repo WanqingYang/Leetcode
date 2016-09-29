@@ -11,7 +11,8 @@
  //https://discuss.leetcode.com/topic/2857/share-two-similar-java-solution-that-accpted-by-oj
  
 class Solution {
-    vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict) {
+public:
+    vector<vector<string>> findLadders(string start, string end, unordered_set<string> &dict) {
         dict.insert(end);
         //unordered_map<string, int> vis;
         //unordered_map<string, vector<string>> next;
