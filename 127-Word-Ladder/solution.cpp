@@ -5,7 +5,7 @@ To simplify the problem, we insert end into dict. Once we meet end during the BF
 
 class Solution {
 public:
-    int ladderLength(string beginWord, unordered_set<string>& wordDict) {
+    int ladderLength(string beginWord, string endWord, unordered_set<string>& wordDict) {
         //if(beginWord == endWord)??
         int ladder = 2;
         queue<string> toVisit;
