@@ -28,7 +28,7 @@ public:
                 findNextWord(word, wordDict, tmp);
             }
             ladder++;
-            swap(pleft, tmp);
+            swap(*pleft, tmp);
         }
         return 0;
     }
