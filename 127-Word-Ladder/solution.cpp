@@ -34,7 +34,7 @@ public:
     }
     
 private:    
-    bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder
+    bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder,
     unordered_map<string>& *pright) {
         wordDict.erase(word);
         
