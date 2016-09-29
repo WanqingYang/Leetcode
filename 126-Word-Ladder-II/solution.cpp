@@ -45,7 +45,7 @@ private:
             char origin = word[i];
             for(int j = 0; j < 26; j++) {
                 word[i] = 'a' + j;
-                if(origin == word[i] || wordDict.find(word) == end()) {continue;}
+                if(origin == word[i] || dict.find(word) == end()) {continue;}
                 if(vis.find(word) == vis.end()) {
                     toVisit.push(word);
                     vis[word] = step + 1;
