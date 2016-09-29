@@ -11,7 +11,7 @@ public:
         queue<string> toVisit;
         findNextWord(beginWord, wordDict, toVisit);
         
-        while(!toVisit.empty()) {
+       /* while(!toVisit.empty()) {
             string word = toVisit.front();
             toVisit.pop();
             ladder++;
@@ -20,6 +20,17 @@ public:
             wordDict.erase(word);
             findNextWord(word, wordDict, toVisit);
             //}
+        }*/
+        
+        while(!toVisit.empty()) {
+            int _size = toVisit.size();
+            for(int i = 0; i < _size(); i++) {
+                string word = toVisit.front();
+                toVisit.pop();
+                if(word == endWord) {return ladder;}
+                //wordDict.erase(word);
+                findNextWord(word, wordDict, toVisit);
+            }
         }
         return 0;
     }
