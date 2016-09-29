@@ -22,10 +22,10 @@ public:
                 string word = *it; //????
                 wordDict.erase(word);
                 
-                if(pright->find(word) != pright->end()) {return ladder;}
-                //if(wordDict.find())
-                
-                findNextWord(word, wordDict, tmp);
+                //if(pright->find(word) != pright->end()) {return ladder;}
+                if(findNextWord(word, wordDict, tmp, ladder, pright)) {
+                    return ladder;
+                }
             }
             ladder++;
             swap(*pleft, tmp);
@@ -34,13 +34,18 @@ public:
     }
     
 private:    
-    void findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp) {
+    bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder
+    unordered_map<string>& *pright) {
         wordDict.erase(word);
         
         for(int i = 0; i < word.size(); i++) {
             char origin = word[i];
             for(int j = 0; j < 26; j++) {
                 word[i] = 'a' + j;
+                if(pright->find(word) != pright->end()) {
+                    ladder++;
+                    return true;
+                }
                 if(wordDict.find(word) != wordDict.end()) {
                     wordDict.erase(word);
                     tmp.insert(word);
@@ -49,6 +54,7 @@ private:
             word[i] = origin;
         }
     }
+    return false;
 };
 
 
