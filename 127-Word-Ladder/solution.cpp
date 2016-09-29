@@ -7,8 +7,8 @@ public:
         left.insert(beginWord);
         right.insert(endWord);
         
-        unordered_set<string> tmp;
-        int ladder = 1;
+        //unordered_set<string> tmp;
+        int ladder = 2;
         while(!left.empty() && !right.empty()) {
             if(left.size() < right.size()) {
                 pleft = &left;
@@ -18,6 +18,7 @@ public:
                 pright = &left;
             }
             
+            unordered_set<string> tmp;
             for(auto it = pleft->begin(); it != pleft->end(); it++) {
                 string word = *it; //????
                 wordDict.erase(word);
@@ -43,7 +44,7 @@ public:
         }
         return 0;
     }
-    
+};    
 /*private:    
     bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder,
     unordered_map<string> *pright) {
