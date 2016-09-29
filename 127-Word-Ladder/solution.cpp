@@ -20,6 +20,7 @@ public:
             }
             dist++;
         }
+        return 0;
     }
 private:
     void addNextWords(string word, unordered_set<string>& wordDict, queue<string>& toVisit) {
