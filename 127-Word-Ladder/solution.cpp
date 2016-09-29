@@ -35,7 +35,7 @@ public:
     
 private:    
     bool findNextWord(string word, unordered_set<string>& wordDict, unordered_set<string> &tmp, int &ladder,
-    unordered_map<string>* pright) {
+    unordered_map<string> *pright) {
         wordDict.erase(word);
         
         for(int i = 0; i < word.size(); i++) {
