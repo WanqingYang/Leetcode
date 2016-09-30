@@ -5,8 +5,12 @@ class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
         vector<int> res;
-        //vector<unordered_set<int>> graph(n, unordered_set<int>());
-        vector<vector<unordered_set<int>> graph(n);
+        if(edges.empty()) {
+            res.push_back(0);
+            return res; 
+        }
+        vector<unordered_set<int>> graph(n, unordered_set<int>());
+        //vector<vector<unordered_set<int>> graph(n);
         vector<int> degree(n, 0);
         
         //make grph
