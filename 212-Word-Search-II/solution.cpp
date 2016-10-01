@@ -54,8 +54,8 @@ private:
             res.push_back(words[root->wordIdx]);
             root->isLeaf = false;
             validCnt++;
-            root->prefixCnt -= validCnt
-            return validCnt; //??why not return directly?????
+            root->prefixCnt -= validCnt;
+            //return validCnt; //??why not return directly?????
         }
         
         //int curC = board[i][j] - 'a';
