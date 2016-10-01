@@ -65,12 +65,9 @@ private:
         
         int curC = board[i][j] - 'a';
         board[i][j] = '*';
-        //Trie *child = root->children[curC];
-        //validCnt += dfs_Trie(board, words, i-1, j, child) + dfs_Trie(board, words, i+1, j, child) + 
-       // dfs_Trie(board, words, i, j-1, child) + dfs_Trie(board, words, i, j+1, child);
-        validCnt += dfs_Trie(board, words, i-1, j, root->children[curC]) + dfs_Trie(board, words, i+1, j, root->children[curC]) + 
-        dfs_Trie(board, words, i, j-1, root->children[curC]) + dfs_Trie(board, words, i, j+1, root->children[curC]);
-        //cout << "run recursion successfully" << endl;
+        Trie *child = root->children[curC];
+        validCnt += dfs_Trie(board, words, i-1, j, child) + dfs_Trie(board, words, i+1, j, child) + 
+        dfs_Trie(board, words, i, j-1, child) + dfs_Trie(board, words, i, j+1, child);
         board[i][j] = 'a' + curC;
         root->prefixCnt -= validCnt;
         return validCnt;
