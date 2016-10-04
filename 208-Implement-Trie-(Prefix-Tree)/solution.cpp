@@ -30,7 +30,7 @@ public:
             root = root->next[idx];
         }
         root->isLeaf = true;*/
-        Trie *cur = root;
+        TrieNode *cur = root;
         for(int i = 0; i < word.size(); i++) {
             int idx = word[i] - 'a';
             if(!cur->next[idx]) {
@@ -52,7 +52,7 @@ public:
             root = root->next[idx];
         }
         return root->isLeaf;*/
-        TrieNode p = find(word);
+        TrieNode* p = find(word);
         return p != NULL && p->isLeaf;
     }
 
