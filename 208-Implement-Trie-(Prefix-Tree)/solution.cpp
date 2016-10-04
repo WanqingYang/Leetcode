@@ -1,9 +1,9 @@
 class TrieNode {
     //int prefixCnt;
-    bool isLeaf;
-    TrieNode *next[26];
 public:
     // Initialize your data structure here.
+    bool isLeaf;
+    TrieNode *next[26];
     TrieNode() {
         //prefixCnt = 0;
         isLeaf = false;
