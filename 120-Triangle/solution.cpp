@@ -1,5 +1,5 @@
 //bottom up
-/*class Solution {
+class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
         int n = triangle.size();
@@ -13,9 +13,9 @@ public:
         }
         return minSum[0];
     }
-};*/
+};
 
-class Solution {
+/*class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
         int n = triangle.size();
