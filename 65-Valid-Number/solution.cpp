@@ -3,54 +3,46 @@ public:
     bool isNumber(string str) {
         int n = str.size(), i = 0;
         
-        bool number = false;
-        bool space = false;
-        bool sci = false;
-        bool afterE = true;
-        
         while(str[i] == ' ') {i++;}
         if(str[i] == '-' || str[i] == '+') {
             i++;
         }
         
-        int start = i, ecnt = 0, dcnt = 0;
+        bool point = false;
+        bool sci = false;
+        bool number = false;
+        bool space = false;
+        bool numAfterE = true;
+        
+        int start = i;
         for(; i < n; i++) {
-            if(str[i] == 'e') {
-                if(ecnt > 0 || i == start || i == n-1 || number == false) {
-                    return false;
-                }
-                sci = true;
-                afterE = false;
-                number = false;
-                ecnt++;
-                continue;
-            }
-            if(str[i] == '.') {
-                if(dcnt || sci || (i > start && str[i-1] == ' ')) {return false;}
-                dcnt++;
-                continue;
-            }
+            //cout << "str[i] = " << str[i] << endl; 
             if(isdigit(str[i])) {
                 if(space) {return false;}
                 number = true;
-                afterE = true;
-                continue;
-            } else {
-                if(str[i] == ' ') {
-                    if(ecnt && afterE) {return false;}
-                    space = true;
-                    continue;
-                } else if(str[i] == '+' || str[i] == '-') {
-                    if(ecnt && (i > start && str[i-1] == 'e')) {
-                        afterE = false;
-                        continue;
-                    }
-                } else {
+                numAfterE = true;
+            } else if(str[i] == '.') {
+                //if(point || sci || (i > start && str[i-1] == ' ')) {return false;}
+                //if(sci || point || (i > start && str[i-1] == ' ')) {return false;}
+                if(sci || point || space) {return false;}
+                point = true;
+            } else if(str[i] == 'e') {
+                //if(sci || point || i == start || i == n-1 || number == false) {
+                if(sci || !number) {
                     return false;
                 }
+                sci = true;
+                numAfterE = false;
+            } else if(str[i] == '+' || str[i] == '-') {
+                if(i > start && str[i-1] != 'e') {
+                    return false;
+                }             
+            } else if (str[i] == ' ') {
+                space = true;
+            } else {
+                return false;
             }
         }
-        return number && afterE;
-        //return number;
+        return number && numAfterE;
     }
 };
