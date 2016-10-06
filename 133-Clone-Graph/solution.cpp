@@ -6,13 +6,14 @@
  *     UndirectedGraphNode(int x) : label(x) {};
  * };
  */
-//second time
+//second time, rewrite
 class Solution {
     unordered_map<int, UndirectedGraphNode*> myMap;
 public:
     UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        if(!node) {return NULL;}
         if(myMap.find(node->label) != myMap.end()) {
-            return node;
+            return myMap[node->label];//why not return node;
         }
         
         UndirectedGraphNode *new_node = new UndirectedGraphNode(node->label);
