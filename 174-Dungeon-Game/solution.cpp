@@ -1,5 +1,34 @@
-//2D dp
+//1D dp
 class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        int m = dungeon.size();
+        int n = dungeon[0].size();
+        vector<int> hp(n, INT_MAX);
+        int need = 1 - dungeon[m-1][n-1]; 
+        hp[n-1] = need <= 0? 1: need;
+        for(int j = n-2; j >= 0; j--) {
+            need = hp[j+1] - dungeon[m-1][j];
+            hp[j] = need <= 0? 1: need;
+        }
+        
+        for(int i = m-2; i >= 0; i--) {
+            for(int j = n-1; j >= 0; j--) {
+                if(j == n-1) {
+                    need = hp[j] - dungeon[i][j];
+                    hp[j] = need <= 0? 1: need;
+                } else {
+                    need = min(hp[j], hp[j+1]) - dungeon[i][j];
+                    hp[j] = need <= 0? 1: need;
+                }
+            }
+        }
+        return hp[0];
+    }
+};
+
+//2D dp
+/*class Solution {
 public:
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
         int m = dungeon.size();
