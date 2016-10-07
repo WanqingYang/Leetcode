@@ -13,7 +13,7 @@ public:
         int n = nums.size();
         vector<int> dp(n, INT_MAX);
         dp[0] = 0;
-        for(int i = 1; i <= nums[0]; i++) {
+        for(int i = 1; i < n && i <= nums[0]; i++) {
             dp[i] = 1;
         }
         for(int i = 1; i < n; i++) {
