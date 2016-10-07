@@ -1,7 +1,10 @@
 class Solution {
-    vector<vector<bool>> isPalindrome(string s) {
+public:
+    int minCut(string s) {
         int n = s.size();
+        //preparation
         vector<vector<bool>> booldp(n, vector<bool>(n, true));
+        
         for(int i = 0; i < n; i++) {
             for(int j = i+1; j < n; j++) {
                 for(int a = i, b = j; b > a; a++, b--) {
@@ -12,14 +15,6 @@ class Solution {
                 }
             }
         }
-        return booldp;
-    }
-    
-public:
-    int minCut(string s) {
-        int n = s.size();
-        //preparation
-        vector<vector<bool>> booldp = isPalindrome(s);
         
         //initialization
         vector<int> cutdp(n+1);
