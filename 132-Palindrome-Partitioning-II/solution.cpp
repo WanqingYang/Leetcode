@@ -22,7 +22,8 @@ public:
         vector<vector<bool>> booldp = isPalindrome(s);
         
         //initialization
-        vector<int> cutdp(n+1, -1);
+        vector<int> cutdp(n+1);
+        cutdp[0] = -1;
 
         for(int i = 1; i <= n; i++) {
             cutdp[i] = i-1;
