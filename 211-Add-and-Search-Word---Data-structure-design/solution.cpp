@@ -49,6 +49,7 @@ private:
                     cur = tmp->next[i];
                     find(cur, word + i + 1);
                 }
+            }
         }
        return cur && cur->isLeaf; 
     }
