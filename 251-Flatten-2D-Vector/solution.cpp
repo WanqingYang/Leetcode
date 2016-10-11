@@ -28,7 +28,7 @@ public:
     }
 
     bool hasNext() {
-        //if(col == -1) {return false;}
+        if(col == -1) {return false;}
         col = vec[i].size();
         while (col == 0) {
             if(i < row) {
