@@ -43,11 +43,11 @@ private:
             if(word[i] != '.') {
                 int idx = word[i] - 'a';
                 cur = cur->next[idx];
-            } else if(cur && word[i] == '.') {
+            } else if(word[i] == '.') {
                 TrieNode *tmp = cur;
-                for(int i = 0; i < 26; i++) {
-                    cur = tmp->next[i];
-                    find(cur, word + i + 1);
+                for(int j = 0; j < 26; j++) {
+                    cur = tmp->next[j];
+                    if(find(cur, word + i + 1)){return true;}
                 }
             }
         }
