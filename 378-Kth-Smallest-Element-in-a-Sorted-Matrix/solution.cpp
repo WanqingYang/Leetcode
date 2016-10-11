@@ -1,9 +1,11 @@
 /**every time calculate the elements less or equal to mid
  **/
+
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
         int n = matrix.size();
+        if(n == 0) {return 0;}
         int start = matrix[0][0], end = matrix[n-1][n-1];
         while(start < end) {
             int mid = start + (end - start) / 2;
