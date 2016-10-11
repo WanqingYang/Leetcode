@@ -10,21 +10,9 @@ public:
         if(j < col - 1) {
             j++;
             return vec[i][j-1];
-        } /*else if(i != col-1 && j == col-1) {
-            i++, j = 0;
-            return vec[i-1][col-1];
-        }*/
+        }
         i++, j = 0;
         return vec[i-1][col-1];
-        
-        /*if(j != 0 && j < col) { //within one row
-            return vec[i][j-1];
-        } else if(j == 0 && i > 0) { // the first element, not the first row
-            int _size = vec[i-1].size();
-            return vec[i-1][_size-1];
-        } else { //first ele, first row
-            
-        }*/
     }
 
     bool hasNext() {
@@ -44,13 +32,6 @@ public:
             } else {
                 return false;
             }
-            /*if(j < col - 1) {
-                //j++;
-                return true;
-            } else if(j == col-1) {
-                //i++, j = 0;
-                return true;
-            } else { return false;}*/
         }
         return false;
     }
