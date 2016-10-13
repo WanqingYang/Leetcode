@@ -26,8 +26,36 @@ public:
         return result;
     }
 };*/
-
+/**Here is my idea: instead of calculating area by height*width, we can think it in a cumulative way. In other words, sum water amount of each bin(width=1).
+ * Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. Fix the higher one and flow water from the lower part. For example, if current height of left is lower, we fill water in the left bin. Until left meets right, we filled the whole container.
+ **/
+ //second time, rewrite
+ 
 class Solution {
+public:
+    int trap(vector<int>& height) {
+        int left = 0, right = height.size() - 1;
+        int maxLeft = 0, maxRight = 0, result = 0;
+        while(left < right) {
+            if(height[left] <= height[right]) {
+                if(height[left] >= maxLeft) {maxLeft = height[left];}
+                else {
+                    result += maxLeft - height[left];
+                }
+                left++;
+            } else {
+                if(height[right] >= maxRight) {maxRight = height[right];}
+                else {
+                    result += maxRight - height[right];
+                }
+                right--;
+            }
+        }
+        return result;
+    }
+};
+
+/*class Solution {
 public:
     int trap(vector<int>& height){
         int left = 0, right = height.size() - 1;
